@@ -3,110 +3,861 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f9fd">
-<title>fondmess</title>
+<meta name="theme-color" content="#08090b">
+<title>FondMessages</title>
 <style>
 *{box-sizing:border-box}
-:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#15213a;background:#f6f8fc}
-body{margin:0;min-height:100vh}
+:root{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  color:#f2f3f5;background:#08090b;
+  font-synthesis:none;text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+body{margin:0;min-height:100vh;background:#08090b;color:#f2f3f5;overflow-x:hidden}
 button{font:inherit;cursor:pointer;border:0}
-.app{max-width:520px;min-height:100vh;margin:auto;padding:22px 18px 110px;background:linear-gradient(160deg,#fff,#f5f8ff 65%,#edf4ff)}
-.top{display:flex;align-items:center;justify-content:space-between;margin:12px 2px 28px}
-.brand{font-size:32px;font-weight:850;letter-spacing:-1.5px}
-.sub{color:#8b98b0;font-size:13px;margin-bottom:4px}
-.circle{width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 5px 22px #23395b12;color:#2563eb;font-size:22px}
-h2{font-size:21px;letter-spacing:-.5px;margin:25px 0 15px;font-weight:800}
-.stories{display:flex;gap:13px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:none}
-.stories::-webkit-scrollbar{display:none}
-.story{flex:0 0 76px;text-align:center;font-size:12px;color:#687894;white-space:nowrap}
-.story img{width:72px;height:86px;object-fit:cover;border-radius:21px;display:block;margin-bottom:8px;background:#e3ebf8}
-.story .add{height:86px;border-radius:21px;background:linear-gradient(145deg,#e5efff,#cbdfff);display:grid;place-items:center;color:#2878f5;font-size:31px;margin-bottom:8px}
-.online-dot{display:inline-block;width:8px;height:8px;background:#24c875;border-radius:50%;margin-right:4px}
+.app{
+  position:relative;isolation:isolate;z-index:1;
+  max-width:520px;min-height:100vh;margin:auto;
+  padding:22px 18px 110px;background:transparent;color:#f2f3f5;
+}
+.app:before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle at 20% 20%,rgba(180,190,205,.06),transparent 34%),
+  radial-gradient(circle at 80% 65%,rgba(180,190,205,.045),transparent 35%);
+}
+.top{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;gap:8px;margin:8px 0 18px;
+}
+.brand-wrap{grid-column:2;grid-row:1;display:flex;justify-content:center;align-items:center}
+.brand{
+  font-size:clamp(25px,6.6vw,31px);font-weight:950;
+  letter-spacing:-1.25px;color:#f5f5f6;text-align:center;
+  white-space:nowrap;line-height:1.02;
+}
+.circle{
+  grid-column:3;grid-row:1;justify-self:end;width:44px;height:44px;
+  border-radius:50%;background:rgba(255,255,255,.055);color:#e6e7ea;
+  border:1px solid rgba(255,255,255,.09);
+}
+.sub{color:#8b8d96;font-size:13px;font-weight:750;margin-bottom:4px}
+h2{font-size:21px;letter-spacing:-.5px;margin:25px 0 15px;font-weight:900}
 .section-head{display:flex;align-items:center;justify-content:space-between}
 .section-head h2{margin-top:24px}
-.filter{background:#fff;border-radius:13px;padding:9px 12px;color:#3878e8}
-.chat{display:flex;align-items:center;gap:12px;padding:13px 11px;margin:8px 0;background:#ffffffd9;border:1px solid #edf1f8;border-radius:21px;box-shadow:0 5px 18px #25385806}
-.avatar{width:54px;height:54px;flex-shrink:0;border-radius:50%;object-fit:cover;background:#e7edfa}
+.stories{
+  display:flex;gap:13px;overflow-x:auto;padding:2px 1px 8px;
+  scrollbar-width:none;margin-left:8px;
+}
+.stories::-webkit-scrollbar{display:none}
+.story{
+  flex:0 0 82px;text-align:center;font-size:12px;font-weight:650;
+  color:#d0d1d5;white-space:nowrap;cursor:pointer;
+}
+.story img{
+  width:78px;height:92px;object-fit:cover;border-radius:12px;
+  display:block;margin-bottom:8px;background:#151619;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 0 8px rgba(255,255,255,.055);
+}
+.story .add{
+  height:92px;border-radius:12px;background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;
+  color:#eee;font-size:31px;margin-bottom:8px;
+  box-shadow:0 0 8px rgba(255,255,255,.055);
+}
+.online-dot{
+  display:inline-block;width:7px;height:7px;background:#24c875;
+  border-radius:50%;margin-right:4px;
+}
+.filter{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:13px;padding:9px 12px;color:#eee;font-weight:750;
+}
+.chat{
+  display:flex;align-items:center;gap:12px;padding:13px 11px;margin:8px 0;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.085);border-radius:15px;
+  box-shadow:0 5px 18px rgba(0,0,0,.16);
+  transition:transform .22s ease,border-color .22s ease;
+  cursor:pointer;
+}
+.avatar{
+  width:54px;height:54px;flex-shrink:0;border-radius:50%;
+  object-fit:cover;background:#202125;border:1px solid rgba(255,255,255,.1);
+}
 .details{flex:1;min-width:0}
-.name{font-size:15px;font-weight:800;margin-bottom:5px}
-.preview{font-size:13px;color:#8a97ae;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#98a4b8;font-size:11px}
-.unread{min-width:20px;height:20px;border-radius:12px;background:#2878f5;color:white;display:grid;place-items:center;font-size:11px;font-weight:800;padding:0 5px}
-.nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:min(484px,calc(100% - 28px));display:flex;justify-content:space-around;align-items:center;padding:11px 8px calc(11px + env(safe-area-inset-bottom));border:1px solid #ffffffd9;border-radius:27px;background:#ffffffd9;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 12px 40px #263b611c}
-.nav button{background:transparent;color:#94a1b8;font-size:11px;font-weight:650;display:flex;align-items:center;flex-direction:column;gap:5px;min-width:56px}
-.nav .ico{font-size:22px}
-.nav .active{color:#2878f5}
-button:active{transform:scale(.96)}
-@media(min-width:700px){body{padding:24px 0}.app{border-radius:30px;box-shadow:0 20px 80px #203b6414;min-height:calc(100vh - 48px)}}
+.name{font-size:15px;font-weight:850;margin-bottom:5px;color:#f2f3f5}
+.preview{
+  font-size:13px;font-weight:550;color:#999ba3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#858790;font-size:11px}
+.unread{
+  min-width:20px;height:20px;border-radius:12px;background:#eee;color:#111;
+  display:grid;place-items:center;font-size:11px;font-weight:900;padding:0 5px;
+}
+.nav{
+  position:fixed;bottom:15px;left:50%;transform:translateX(-50%);
+  width:min(400px,calc(100% - 36px));display:flex;justify-content:space-around;
+  align-items:center;padding:9px 8px calc(9px + env(safe-area-inset-bottom));
+  /* Экран переписки */
+.screen{
+  display:none;position:fixed;inset:0;z-index:20;
+  max-width:520px;margin:auto;background:#090a0c;color:#f3f3f5;
+}
+.screen.open{display:flex;flex-direction:column;animation:content-enter .22s ease both}
+.chat-head{
+  display:flex;align-items:center;gap:12px;padding:12px 15px;
+  padding-top:calc(12px + env(safe-area-inset-top));
+  border-bottom:1px solid rgba(255,255,255,.09);
+  background:rgba(20,20,22,.88);backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.back{
+  background:transparent;color:#f4f4f5;font-size:27px;
+  padding:4px 7px;line-height:1;
+}
+.chat-head .avatar{width:42px;height:42px}
+.chat-head .details{flex:1}
+.chat-head .name{margin:0 0 4px}
+.chat-head .preview{font-size:12px}
+.head-action{background:transparent;color:#f4f4f5;font-size:21px;padding:7px}
+.messages{
+  flex:1;overflow-y:auto;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  display:flex;flex-direction:column;gap:9px;padding:18px 14px;
+  scrollbar-width:thin;scrollbar-color:#34353a transparent;
+}
+.bubble{
+  max-width:79%;width:fit-content;padding:11px 14px;
+  border-radius:18px;background:#242529;color:#f2f2f4;
+  font-size:14px;line-height:1.4;overflow-wrap:anywhere;
+  border:1px solid rgba(255,255,255,.045);
+}
+.bubble.mine{
+  align-self:flex-end;background:#e7e7eb;color:#161619;
+  border-color:rgba(255,255,255,.12);border-bottom-right-radius:6px;
+}
+.bubble.theirs{align-self:flex-start;border-bottom-left-radius:6px}
+.bubble-time{font-size:10px;opacity:.55;margin-top:5px;text-align:right}
+.composer{
+  display:flex;align-items:flex-end;gap:9px;padding:10px 12px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+  background:rgba(20,20,22,.9);border-top:1px solid rgba(255,255,255,.08);
+}
+.composer textarea{
+  flex:1;resize:none;min-height:42px;max-height:120px;
+  border-radius:20px;padding:12px 15px;
+  background:#202124;border:1px solid rgba(255,255,255,.09);
+  color:#f6f6f7;font:inherit;font-size:14px;outline:none;
+}
+.composer textarea::placeholder{color:#8c8d95}
+.send{
+  flex-shrink:0;width:42px;height:42px;border-radius:50%;
+  background:#f0f0f2;color:#111;font-size:19px;font-weight:900;
+}
+.empty{
+  color:#898b93;text-align:center;padding:40px 18px;font-size:14px;
+}
+.post{
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;padding:15px;margin:12px 0;
+}
+.post-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.post-top .avatar{width:38px;height:38px}
+.post-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.5}
+.post-date{font-size:11px;color:#858790;margin-top:10px}
+.post-form{
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;padding:13px;margin-top:12px;
+}
+.post-form textarea{
+  display:block;width:100%;min-height:80px;resize:vertical;
+  background:transparent;color:#f4f4f5;border:0;outline:none;
+  font:inherit;font-size:14px;
+}
+.post-form textarea::placeholder{color:#858790}
+.post-form button{
+  display:block;margin-left:auto;padding:9px 15px;border-radius:13px;
+  background:#eeeef0;color:#111;font-weight:800;
+}
+.profile-card{
+  padding:22px 16px;text-align:center;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+  border-radius:20px;margin-top:20px;
+}
+.profile-card .avatar{width:78px;height:78px;margin:0 auto 12px}
+.field{
+  display:block;width:100%;margin:9px 0;padding:13px 14px;
+  border:1px solid rgba(255,255,255,.12);border-radius:13px;
+  background:#17181b;color:#f4f4f5;font:inherit;outline:none;
+}
+.primary{
+  width:100%;padding:13px;border-radius:14px;background:#efeff1;
+  color:#101012;font-weight:850;margin-top:8px;
+}
+.secondary{
+  padding:10px 13px;border-radius:12px;background:#222328;color:#eee;
+  border:1px solid rgba(255,255,255,.1);font-weight:750;
+}
+.toast{
+  position:fixed;left:50%;bottom:95px;transform:translateX(-50%);
+  z-index:100;max-width:calc(100% - 40px);padding:11px 16px;
+  border-radius:13px;background:#292a2e;color:#fff;font-size:13px;
+  box-shadow:0 8px 30px #0008;display:none;
+}
+.toast.show{display:block;animation:content-enter .2s ease both}
+@media (prefers-reduced-motion:reduce){
+  .app,.top,.section-head,.stories,#chats .chat,.screen.open{animation:none!important}
+  .fm-particles i{animation:none!important}
+}
 </style>
 </head>
 <body>
-<main class="app">
+<div class="fm-particles" id="particles" aria-hidden="true"></div>
+
+<main class="app" id="home">
   <header class="top">
-    <div><div class="sub">YOUR WORLD, YOUR PEOPLE</div><div class="brand">fondmess</div></div>
-    <button class="circle" aria-label="Search" onclick="searchChats()">⌕</button>
+    <div class="brand-wrap"><div class="brand">FondMessages</div></div>
+    <button class="circle" id="settingsButton" aria-label="Настройки">⚙</button>
   </header>
 
-  <div class="section-head"><h2 style="margin-top:0">Stories</h2><button class="filter" onclick="alert('Stories will be available when we connect the backend.')">＋ Add</button></div>
-  <section class="stories">
-    <div class="story"><div class="add">＋</div>Your story</div>
-    <div class="story"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma"><span>Emma</span></div>
-    <div class="story"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Noah"><span
-                                                                                              >Noah</span></div>
-    <div class="story"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sofia"><span>Sofia</span></div>
-    <div class="story"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Liam"><span>Liam</span></div>
+  <div class="section-head">
+    <div>
+      <div class="sub">YOUR SPACE</div>
+      <h2 id="mainHeading">Stories</h2>
+    </div>
+    <button class="filter" id="viewToggle">Чаты / Посты</button>
+  </div>
+
+  <section class="stories" id="stories">
+    <div class="story" id="addStory">
+      <div class="add">＋</div>
+      Ваша история
+    </div>
   </section>
 
-  <div class="section-head"><h2>Messages</h2><button class="filter" onclick="searchChats()">⌕ Search</button></div>
+  <div class="section-head">
+    <h2 id="listHeading">Messages</h2>
+    <button class="filter" id="refreshButton">↻</button>
+  </div>
+
   <section id="chats">
-    <article class="chat" data-search="emma wilson hey how are you">
-      <img class="avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
-      <div class="details"><div class="name">Emma Wilson</div><div class="preview"><span class="online-dot"></span>Online · Hey! How are you?</div></div>
-      <div class="meta"><span>2m</span><span class="unread">2</span></div>
-    </article>
-    <article class="chat" data-search="noah parker sent you a photo">
-      <img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
-      <div class="details"><div class="name">Noah Parker</div><div class="preview"><span class="online-dot"></span>Online · Sent you a photo</div></div>
-      <div class="meta"><span>8m</span><span class="unread">1</span></div>
-    </article>
-    <article class="chat" data-search="sofia martinez see you tomorrow">
-      <img class="avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
-      <div class="details"><div class="name">Sofia Martinez</div><div class="preview">See you tomorrow!</div></div>
-      <div class="meta"><span>15m</span></div>
-    </article>
-    <article class="chat" data-search="family group chat">
-      <img class="avatar" src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
-      <div class="details"><div class="name">Family</div><div class="preview">Group · Mom: Great!</div></div>
-      <div class="meta"><span>32m</span><span class="unread">3</span></div>
-    </article>
-    <article class="chat" data-search="olivia davis">
-      <img class="avatar" src="https://randomuser.me/api/portraits/women/21.jpg" alt="">
-      <div class="details"><div class="name">Olivia Davis</div><div class="preview">Talk to you later</div></div>
-      <div class="meta"><span>1h</span></div>
-    </article>
+    <div class="empty" id="loadingText">Загрузка чатов…</div>
+  </section>
+
+  <section id="postsSection" hidden>
+    <form class="post-form" id="postForm">
+      <textarea id="postText" maxlength="280" placeholder="Что у тебя нового?" required></textarea>
+      <button type="submit">Опубликовать</button>
+    </form>
+    <div id="postsList"><div class="empty">Загрузка публикаций…</div></div>
   </section>
 </main>
 
-<nav class="nav">
-  <button class="active" onclick="showTab(this,'Chats')"><span class="ico">▣</span>Chats</button>
-  <button onclick="showTab(this,'Friends')"><span class="ico">♙</span>Friends</button>
-  <button onclick="showTab(this,'Calls')"><span class="ico">⌕</span>Calls</button>
-  <button onclick="showTab(this,'Profile')"><span class="ico">◉</span>Profile</button>
+<nav class="nav" aria-label="Основная навигация">
+  <button class="active" data-tab="profile">
+    <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.5-4 3-6 7-6s6.5 2 7 6"/></svg></span>
+    Профиль
+  </button>
+  <button data-tab="friends">
+    <span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4 2.5-6 6.5-6s6 2 6.5 6M15 15c3.5-.2 5.5 1.5 6 4"/></svg></span>
+    Друзья
+  </button>
+  <button data-tab="calls">
+    <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.2 1.8a15 15 0 0 0 5.4 5.4L16 13l5 2v3c0 1.1-.9 2-2 2C10 19.5 4.5 14 4 5c0-1.1.9-2 2-2Z"/></svg></span>
+    Звонки
+  </button>
 </nav>
 
+<section class="screen" id="chatScreen" aria-label="Переписка">
+  <header class="chat-head">
+    <button class="back" id="backButton" aria-label="Назад">‹</button>
+    <img class="avatar" id="chatAvatar" alt="" src="">
+    <div class="details">
+      <div class="name" id="chatName">Чат</div>
+      <div class="preview" id="chatStatus">FondMessages</div>
+    </div>
+    <button class="head-action" id="callButton" aria-label="Звонок">☎</button>
+  </header>
+  <div class="messages" id="messagesList"></div>
+  <form class="composer" id="messageForm">
+    <textarea id="messageText" rows="1" placeholder="Сообщение…" required></textarea>
+    <button class="send" type="submit" aria-label="Отправить">↑</button>
+  </form>
+</section>
+
+<section class="screen" id="profileScreen" aria-label="Профиль">
+  <header class="chat-head">
+    <button class="back" data-close="profileScreen" aria-label="Назад">‹</button>
+    <div class="details"><div class="name">Профиль</div><div class="preview">FondMessages</div></div>
+  </header>
+  <div style="padding:18px;overflow:auto">
+    <div class="profile-card">
+      <img class="avatar" id="profileAvatar" alt="" src="">
+      <div class="name" id="profileName">Гость</div>
+      <div class="preview" id="profileEmail">Войдите, чтобы продолжить</div>
+    </div>
+    <form id="authForm">
+      <input class="field" id="authEmail" type="email" placeholder="Email" autocomplete="email" required>
+      <input class="field" id="authPassword" type="password" placeholder="Пароль" autocomplete="current-password" required>
+      <button class="primary" type="submit" id="loginButton">Войти / Зарегистрироваться</button>
+    </form>
+    <button class="secondary" id="logoutButton" style="width:100%;margin-top:10px">Выйти</button>
+  </div>
+</section>
+
+<section class="screen" id="friendsScreen" aria-label="Друзья">
+  <header class="chat-head">
+    <button class="back" data-close="friendsScreen" aria-label="Назад">‹</button>
+    <div class="details"><div class="name">Друзья</div><div class="preview">Пользователи FondMessages</div></div>
+  </header>
+  <div id="friendsList" style="padding:15px;overflow:auto"></div>
+</section>
+
+<section class="screen" id="callsScreen" aria-label="Звонки">
+  <header class="chat-head">
+    <button class="back" data-close="callsScreen" aria-label="Назад">‹</button>
+    <div class="details"><div class="name">Звонки</div><div class="preview">История звонков</div></div>
+  </header>
+  <div class="empty">Звонки пока не подключены.</div>
+</section>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-function searchChats(){
-  const q=prompt('Search people or chats');
-  if(q===null)return;
-  document.querySelectorAll('.chat').forEach(c=>{
-    c.style.display=c.dataset.search.includes(q.toLowerCase())?'flex':'none';
+"use strict";
+
+/* 1. Подключение Supabase */
+const SUPABASE_URL = "https://ddfxsdgytkpzzhsuvvbt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_G-t30ZePWWdhlAxdFcOdnw_CZYC7Tfd";
+
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let currentUser = null;
+let activeChat = null;
+let messageChannel = null;
+let postsChannel = null;
+let chats = [];
+let knownMessages = new Set();
+
+/* 2. Утилиты */
+const $ = id => document.getElementById(id);
+
+function toast(message) {
+  const el = $("toast");
+  el.textContent = message;
+  el.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => el.classList.remove("show"), 2800);
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[ch]);
+}
+
+function avatarURL(seed) {
+  return "https://api.dicebear.com/9.x/initials/svg?seed=" +
+    encodeURIComponent(seed || "FM");
+}
+
+function formatTime(value) {
+  if (!value) return "";
+  return new Date(value).toLocaleTimeString([], {
+    hour:"2-digit", minute:"2-digit"
   });
 }
-function showTab(btn,name){
-  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  if(name!=='Chats')alert(name+' screen will be added in the next step.');
+
+/* 3. Размытые пятна — только CSS transforms */
+(function createParticles() {
+  const root = $("particles");
+  if (!root) return;
+
+  const count = window.matchMedia("(max-width:600px)").matches ? 4 : 6;
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < count; i++) {
+    const spot = document.createElement("i");
+    const size = 90 + Math.random() * 100;
+    spot.style.width = size + "px";
+    spot.style.height = (size * (.65 + Math.random() * .5)) + "px";
+    spot.style.left = (Math.random() * 85) + "vw";
+    spot.style.top = (Math.random() * 90) + "vh";
+    spot.style.setProperty("--dur", (18 + Math.random() * 12) + "s");
+    spot.style.setProperty("--op", (.18 + Math.random() * .2).toFixed(2));
+    spot.style.animationDelay = (-Math.random() * 25) + "s";
+    fragment.appendChild(spot);
+  }
+  root.appendChild(fragment);
+})();
+
+/* 4. Переключение экранов */
+function openScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen =>
+    screen.classList.remove("open")
+  );
+  $(id).classList.add("open");
 }
+
+function closeScreens() {
+  document.querySelectorAll(".screen").forEach(screen =>
+    screen.classList.remove("open")
+  );
+}
+
+$("backButton").addEventListener("click", () => {
+  closeScreens();
+  stopMessageUpdates();
+});
+
+document.querySelectorAll("[data-close]").forEach(button => {
+  button.addEventListener("click", () => {
+    $(button.dataset.close).classList.remove("open");
+  });
+});
+
+document.querySelectorAll("[data-tab]").forEach(button => {
+  button.addEventListener("click", async () => {
+    document.querySelectorAll("[data-tab]").forEach(b =>
+      b.classList.toggle("active", b === button)
+    );
+
+    const tab = button.dataset.tab;
+    if (tab === "profile") {
+      openScreen("profileScreen");
+    } else if (tab === "friends") {
+      openScreen("friendsScreen");
+      await loadFriends();
+    } else if (tab === "calls") {
+      openScreen("callsScreen");
+    }
+  });
+});
+
+/* 5. Авторизация */
+$("authForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const email = $("authEmail").value.trim();
+  const password = $("authPassword").value;
+  $("loginButton").disabled = true;
+
+  try {
+    const result = await db.auth.signInWithPassword({email, password});
+
+    if (result.error) {
+      const signup = await db.auth.signUp({email, password});
+
+      if (signup.error) throw signup.error;
+
+      if (!signup.data.session) {
+        toast("Проверь почту и подтверди регистрацию.");
+      } else {
+        toast("Регистрация успешна.");
+      }
+    } else {
+      toast("Вход выполнен.");
+    }
+  } catch (error) {
+    toast(error.message || "Не удалось войти.");
+  } finally {
+    $("loginButton").disabled = false;
+  }
+});
+
+$("logoutButton").addEventListener("click", async () => {
+  const {error} = await db.auth.signOut();
+  if (error) return toast(error.message);
+  toast("Ты вышел из аккаунта.");
+});
+
+db.auth.onAuthStateChange((_event, session) => {
+  currentUser = session?.user || null;
+  updateProfile();
+  if (currentUser) {
+    loadChats();
+    loadPosts();
+  } else {
+    chats = [];
+    $("chats").innerHTML =
+      '<div class="empty">Войди в аккаунт, чтобы пользоваться чатами.</div>';
+  }
+});
+
+function updateProfile() {
+  $("profileName").textContent =
+    currentUser?.user_metadata?.username ||
+    currentUser?.email?.split("@")[0] || "Гость";
+  $("profileEmail").textContent =
+    currentUser?.email || "Войдите, чтобы продолжить";
+  $("profileAvatar").src = avatarURL($("profileName").textContent);
+}
+
+/* 6. Чаты — список профилей */
+async function loadChats() {
+  if (!currentUser) return;
+
+  const {data, error} = await db
+    .from("profiles")
+    .select("*")
+    .neq("id", currentUser.id)
+    .limit(50);
+
+  if (error) {
+    $("chats").innerHTML =
+      '<div class="empty">Не удалось загрузить пользователей. Проверь таблицу profiles и RLS.</div>';
+    return;
+  }
+
+  chats = data || [];
+  renderChats();
+}
+
+function renderChats() {
+  const root = $("chats");
+
+  if (!currentUser) {
+    root.innerHTML = '<div class="empty">Войди в аккаунт.</div>';
+    return;
+  }
+
+  if (!chats.length) {
+    root.innerHTML = '<div class="empty">Пока нет других пользователей.</div>';
+    return;
+  }
+
+  root.replaceChildren();
+
+  const fragment = document.createDocumentFragment();
+
+  chats.forEach(person => {
+    const name = person.username || person.display_name ||
+      person.email || "Пользователь";
+    const row = document.createElement("div");
+    row.className = "chat";
+    row.innerHTML = `
+      <img class="avatar" alt="" src="${avatarURL(name)}">
+      <div class="details">
+        <div class="name">${escapeHTML(name)}</div>
+        <div class="preview">Открыть переписку</div>
+      </div>
+      <div class="meta">›</div>
+    `;
+    row.addEventListener("click", () => openChat(person));
+    fragment.appendChild(row);
+  });
+
+  root.appendChild(fragment);
+}
+
+/* 7. Открытие чата */
+async function openChat(person) {
+  if (!currentUser) return toast("Сначала войди в аккаунт.");
+
+  activeChat = person;
+  knownMessages.clear();
+
+  const name = person.username || person.display_name ||
+    person.email || "Пользователь";
+
+  $("chatName").textContent = name;
+  $("chatAvatar").src = avatarURL(name);
+  $("chatStatus").textContent = "FondMessages";
+  $("messagesList").replaceChildren();
+
+  openScreen("chatScreen");
+
+  await loadMessages();
+  subscribeMessages();
+}
+
+function stopMessageUpdates() {
+  if (messageChannel) {
+    db.removeChannel(messageChannel);
+    messageChannel = null;
+  }
+}
+
+async function loadMessages() {
+  if (!activeChat || !currentUser) return;
+
+  const {data, error} = await db
+    .from("messages")
+    .select("*")
+    .order("created_at", {ascending:true})
+    .limit(200);
+
+  if (error) {
+    $("messagesList").innerHTML =
+      '<div class="empty">Не удалось загрузить сообщения. Проверь схему messages.</div>';
+    return;
+  }
+
+  $("messagesList").replaceChildren();
+
+  (data || [])
+    .filter(message =>
+      (message.sender_id === currentUser.id &&
+       message.receiver_id === activeChat.id) ||
+      (message.sender_id === activeChat.id &&
+       message.receiver_id === currentUser.id)
+    )
+    .forEach(renderMessage);
+
+  scrollMessagesToBottom();
+}
+
+function renderMessage(message) {
+  if (!message || knownMessages.has(message.id)) return;
+  knownMessages.add(message.id);
+
+  const mine = message.sender_id === currentUser?.id;
+  const bubble = document.createElement("div");
+  bubble.className = "bubble " + (mine ? "mine" : "theirs");
+
+  const body = document.createElement("div");
+  body.textContent = message.content || message.text || "";
+  bubble.appendChild(body);
+
+  const time = document.createElement("div");
+  time.className = "bubble-time";
+  time.textContent = formatTime(message.created_at);
+  bubble.appendChild(time);
+
+  $("messagesList").appendChild(bubble);
+}
+
+function scrollMessagesToBottom() {
+  const el = $("messagesList");
+  el.scrollTop = el.scrollHeight;
+}
+
+function subscribeMessages() {
+  stopMessageUpdates();
+  if (!activeChat || !currentUser) return;
+
+  messageChannel = db.channel("messages-" + currentUser.id);
+
+  messageChannel
+    .on("postgres_changes", {
+      event:"INSERT", schema:"public", table:"messages"
+    }, payload => {
+      const message = payload.new;
+      const belongsToChat =
+        (message.sender_id === currentUser.id &&
+         message.receiver_id === activeChat?.id) ||
+        (message.sender_id === activeChat?.id &&
+         message.receiver_id === currentUser.id);
+
+      if (belongsToChat) {
+        renderMessage(message);
+        scrollMessagesToBottom();
+      }
+    })
+    .subscribe();
+}
+
+/* 8. Отправка сообщений */
+$("messageForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!currentUser || !activeChat) {
+    return toast("Сначала открой чат.");
+  }
+
+  const input = $("messageText");
+  const content = input.value.trim();
+  if (!content) return;
+
+  const sendButton = $("messageForm").querySelector("button");
+  sendButton.disabled = true;
+
+  const {error} = await db.from("messages").insert({
+    sender_id: currentUser.id,
+    receiver_id: activeChat.id,
+    content
+  });
+
+  sendButton.disabled = false;
+
+  if (error) {
+    toast("Не удалось отправить: " + error.message);
+    return;
+  }
+
+  input.value = "";
+  await loadMessages();
+});
+
+/* 9. Публикации */
+$("viewToggle").addEventListener("click", () => {
+  const showingPosts = !$("postsSection").hidden;
+  $("postsSection").hidden = showingPosts;
+  $("chats").hidden = !showingPosts;
+  $("stories").hidden = !showingPosts;
+  $("mainHeading").textContent = showingPosts ? "Stories" : "Posts";
+  $("listHeading").textContent = showingPosts ? "Messages" : "Posts";
+  if (!showingPosts) loadPosts();
+});
+
+async function loadPosts() {
+  if (!currentUser) {
+    $("postsList").innerHTML =
+      '<div class="empty">Войди, чтобы увидеть публикации.</div>';
+    return;
+  }
+
+  const {data, error} = await db
+    .from("posts")
+    .select("*")
+    .order("created_at", {ascending:false})
+    .limit(50);
+
+  if (error) {
+    $("postsList").innerHTML =
+      '<div class="empty">Публикации недоступны. Проверь таблицу posts и RLS.</div>';
+    return;
+  }
+
+  $("postsList").replaceChildren();
+
+  (data || []).forEach(post => {
+    const card = document.createElement("article");
+    card.className = "post";
+    card.innerHTML = `
+      <div class="post-top">
+        <img class="avatar" alt="" src="${avatarURL(post.user_id)}">
+        <div class="details">
+          <div class="name">${escapeHTML(post.username || "Пользователь")}</div>
+          <div class="preview">FondMessages</div>
+        </div>
+      </div>
+      <div class="post-body">${escapeHTML(post.content)}</div>
+      <div class="post-date">${escapeHTML(formatTime(post.created_at))}</div>
+    `;
+    $("postsList").appendChild(card);
+  });
+}
+
+$("postForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!currentUser) return toast("Сначала войди в аккаунт.");
+
+  const input = $("postText");
+  const content = input.value.trim();
+  if (!content) return;
+
+  const {error} = await db.from("posts").insert({
+    user_id:currentUser.id,
+    content
+  });
+
+  if (error) {
+    toast("Не удалось опубликовать: " + error.message);
+    return;
+  }
+
+  input.value = "";
+  toast("Опубликовано.");
+  await loadPosts();
+});
+
+/* 10. Друзья */
+async function loadFriends() {
+  if (!currentUser) {
+    $("friendsList").innerHTML =
+      '<div class="empty">Войди в аккаунт, чтобы увидеть пользователей.</div>';
+    return;
+  }
+
+  const {data, error} = await db
+    .from("profiles")
+    .select("*")
+    .neq("id", currentUser.id)
+    .limit(50);
+
+  if (error) {
+    $("friendsList").innerHTML =
+      '<div class="empty">Не удалось загрузить пользователей.</div>';
+    return;
+  }
+
+  $("friendsList").replaceChildren();
+
+  (data || []).forEach(person => {
+    const name = person.username || person.display_name ||
+      person.email || "Пользователь";
+
+    const row = document.createElement("div");
+    row.className = "chat";
+    row.innerHTML = `
+      <img class="avatar" alt="" src="${avatarURL(name)}">
+      <div class="details"><div class="name">${escapeHTML(name)}</div>
+      <div class="preview">Открыть чат</div></div>
+    `;
+    row.addEventListener("click", () => openChat(person));
+    $("friendsList").appendChild(row);
+  });
+}
+
+/* 11. Stories — пока локальные */
+$("addStory").addEventListener("click", () => {
+  if (!currentUser) return toast("Войди, чтобы добавить историю.");
+
+  const text = prompt("Напиши текст истории:");
+  if (!text || !text.trim()) return;
+
+  const story = document.createElement("div");
+  story.className = "story";
+
+  const tile = document.createElement("div");
+  tile.className = "add";
+  tile.textContent = "✦";
+  tile.style.fontSize = "20px";
+
+  const caption = document.createElement("div");
+  caption.textContent = text.trim().slice(0, 35);
+
+  story.append(tile, caption);
+  $("stories").appendChild(story);
+});
+
+/* 12. Настройки и запуск */
+$("settingsButton").addEventListener("click", () => {
+  toast("Настройки пока не подключены.");
+});
+
+$("refreshButton").addEventListener("click", () => {
+  loadChats();
+  loadPosts();
+});
+
+async function init() {
+  updateProfile();
+
+  const {data, error} = await db.auth.getSession();
+  if (error) {
+    toast("Ошибка подключения Supabase.");
+    return;
+  }
+
+  currentUser = data.session?.user || null;
+  updateProfile();
+
+  if (currentUser) {
+    await loadChats();
+    await loadPosts();
+  } else {
+    $("chats").innerHTML =
+      '<div class="empty">Войди через вкладку «Профиль», чтобы начать.</div>';
+    $("postsList").innerHTML =
+      '<div class="empty">Войди, чтобы просматривать публикации.</div>';
+  }
+}
+
+init();
 </script>
 </body>
 </html>
