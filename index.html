@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f9fd">
+<title>fondmess</title>
+<style>
+*{box-sizing:border-box}
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#15213a;background:#f6f8fc}
+body{margin:0;min-height:100vh}
+button{font:inherit;cursor:pointer;border:0}
+.app{max-width:520px;min-height:100vh;margin:auto;padding:22px 18px 110px;background:linear-gradient(160deg,#fff,#f5f8ff 65%,#edf4ff)}
+.top{display:flex;align-items:center;justify-content:space-between;margin:12px 2px 28px}
+.brand{font-size:32px;font-weight:850;letter-spacing:-1.5px}
+.sub{color:#8b98b0;font-size:13px;margin-bottom:4px}
+.circle{width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 5px 22px #23395b12;color:#2563eb;font-size:22px}
+h2{font-size:21px;letter-spacing:-.5px;margin:25px 0 15px;font-weight:800}
+.stories{display:flex;gap:13px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:none}
+.stories::-webkit-scrollbar{display:none}
+.story{flex:0 0 76px;text-align:center;font-size:12px;color:#687894;white-space:nowrap}
+.story img{width:72px;height:86px;object-fit:cover;border-radius:21px;display:block;margin-bottom:8px;background:#e3ebf8}
+.story .add{height:86px;border-radius:21px;background:linear-gradient(145deg,#e5efff,#cbdfff);display:grid;place-items:center;color:#2878f5;font-size:31px;margin-bottom:8px}
+.online-dot{display:inline-block;width:8px;height:8px;background:#24c875;border-radius:50%;margin-right:4px}
+.section-head{display:flex;align-items:center;justify-content:space-between}
+.section-head h2{margin-top:24px}
+.filter{background:#fff;border-radius:13px;padding:9px 12px;color:#3878e8}
+.chat{display:flex;align-items:center;gap:12px;padding:13px 11px;margin:8px 0;background:#ffffffd9;border:1px solid #edf1f8;border-radius:21px;box-shadow:0 5px 18px #25385806}
+.avatar{width:54px;height:54px;flex-shrink:0;border-radius:50%;object-fit:cover;background:#e7edfa}
+.details{flex:1;min-width:0}
+.name{font-size:15px;font-weight:800;margin-bottom:5px}
+.preview{font-size:13px;color:#8a97ae;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#98a4b8;font-size:11px}
+.unread{min-width:20px;height:20px;border-radius:12px;background:#2878f5;color:white;display:grid;place-items:center;font-size:11px;font-weight:800;padding:0 5px}
+.nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:min(484px,calc(100% - 28px));display:flex;justify-content:space-around;align-items:center;padding:11px 8px calc(11px + env(safe-area-inset-bottom));border:1px solid #ffffffd9;border-radius:27px;background:#ffffffd9;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 12px 40px #263b611c}
+.nav button{background:transparent;color:#94a1b8;font-size:11px;font-weight:650;display:flex;align-items:center;flex-direction:column;gap:5px;min-width:56px}
+.nav .ico{font-size:22px}
+.nav .active{color:#2878f5}
+button:active{transform:scale(.96)}
+@media(min-width:700px){body{padding:24px 0}.app{border-radius:30px;box-shadow:0 20px 80px #203b6414;min-height:calc(100vh - 48px)}}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="top">
+    <div><div class="sub">YOUR WORLD, YOUR PEOPLE</div><div class="brand">fondmess</div></div>
+    <button class="circle" aria-label="Search" onclick="searchChats()">⌕</button>
+  </header>
+
+  <div class="section-head"><h2 style="margin-top:0">Stories</h2><button class="filter" onclick="alert('Stories will be available when we connect the backend.')">＋ Add</button></div>
+  <section class="stories">
+    <div class="story"><div class="add">＋</div>Your story</div>
+    <div class="story"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma"><span>Emma</span></div>
+    <div class="story"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Noah"><span>Noah</span></div>
+    <div class="story"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sofia"><span>Sofia</span></div>
+    <div class="story"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Liam"><span>Liam</span></div>
+  </section>
+
+  <div class="section-head"><h2>Messages</h2><button class="filter" onclick="searchChats()">⌕ Search</button></div>
+  <section id="chats">
+    <article class="chat" data-search="emma wilson hey how are you">
+      <img class="avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+      <div class="details"><div class="name">Emma Wilson</div><div class="preview"><span class="online-dot"></span>Online · Hey! How are you?</div></div>
+      <div class="meta"><span>2m</span><span class="unread">2</span></div>
+    </article>
+    <article class="chat" data-search="noah parker sent you a photo">
+      <img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+      <div class="details"><div class="name">Noah Parker</div><div class="preview"><span class="online-dot"></span>Online · Sent you a photo</div></div>
+      <div class="meta"><span>8m</span><span class="unread">1</span></div>
+    </article>
+    <article class="chat" data-search="sofia martinez see you tomorrow">
+      <img class="avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+      <div class="details"><div class="name">Sofia Martinez</div><div class="preview">See you tomorrow!</div></div>
+      <div class="meta"><span>15m</span></div>
+    </article>
+    <article class="chat" data-search="family group chat">
+      <img class="avatar" src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
+      <div class="details"><div class="name">Family</div><div class="preview">Group · Mom: Great!</div></div>
+      <div class="meta"><span>32m</span><span class="unread">3</span></div>
+    </article>
+    <article class="chat" data-search="olivia davis">
+      <img class="avatar" src="https://randomuser.me/api/portraits/women/21.jpg" alt="">
+      <div class="details"><div class="name">Olivia Davis</div><div class="preview">Talk to you later</div></div>
+      <div class="meta"><span>1h</span></div>
+    </article>
+  </section>
+</main>
+
+<nav class="nav">
+  <button class="active" onclick="showTab(this,'Chats')"><span class="ico">▣</span>Chats</button>
+  <button onclick="showTab(this,'Friends')"><span class="ico">♙</span>Friends</button>
+  <button onclick="showTab(this,'Calls')"><span class="ico">⌕</span>Calls</button>
+  <button onclick="showTab(this,'Profile')"><span class="ico">◉</span>Profile</button>
+</nav>
+
+<script>
+function searchChats(){
+  const q=prompt('Search people or chats');
+  if(q===null)return;
+  document.querySelectorAll('.chat').forEach(c=>{
+    c.style.display=c.dataset.search.includes(q.toLowerCase())?'flex':'none';
+  });
+}
+function showTab(btn,name){
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(name!=='Chats')alert(name+' screen will be added in the next step.');
+}
+</script>
+</body>
+</html>
