@@ -4,860 +4,440 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#08090b">
-<title>FondMessages</title>
+<title>fondmess</title>
 <style>
 *{box-sizing:border-box}
-:root{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
-  color:#f2f3f5;background:#08090b;
-  font-synthesis:none;text-rendering:optimizeLegibility;
-  -webkit-font-smoothing:antialiased;
-}
-body{margin:0;min-height:100vh;background:#08090b;color:#f2f3f5;overflow-x:hidden}
+:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;color:#15213a;background:#f6f8fc;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{margin:0;min-height:100vh}
 button{font:inherit;cursor:pointer;border:0}
-.app{
-  position:relative;isolation:isolate;z-index:1;
-  max-width:520px;min-height:100vh;margin:auto;
-  padding:22px 18px 110px;background:transparent;color:#f2f3f5;
-}
-.app:before{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(circle at 20% 20%,rgba(180,190,205,.06),transparent 34%),
-  radial-gradient(circle at 80% 65%,rgba(180,190,205,.045),transparent 35%);
-}
-.top{
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;gap:8px;margin:8px 0 18px;
-}
-.brand-wrap{grid-column:2;grid-row:1;display:flex;justify-content:center;align-items:center}
-.brand{
-  font-size:clamp(25px,6.6vw,31px);font-weight:950;
-  letter-spacing:-1.25px;color:#f5f5f6;text-align:center;
-  white-space:nowrap;line-height:1.02;
-}
-.circle{
-  grid-column:3;grid-row:1;justify-self:end;width:44px;height:44px;
-  border-radius:50%;background:rgba(255,255,255,.055);color:#e6e7ea;
-  border:1px solid rgba(255,255,255,.09);
-}
-.sub{color:#8b8d96;font-size:13px;font-weight:750;margin-bottom:4px}
-h2{font-size:21px;letter-spacing:-.5px;margin:25px 0 15px;font-weight:900}
+.app{max-width:520px;min-height:100vh;margin:auto;padding:22px 18px 110px;background:linear-gradient(160deg,#fff,#f5f8ff 65%,#edf4ff)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 28px;width:100%}.brand-wrap{flex:1;min-width:0;display:flex;align-items:center;gap:10px}.brand-wrap::before{content:none;display:none}.brand{font-size:clamp(27px,7vw,32px);font-weight:950;letter-spacing:-1.45px;line-height:1.02;white-space:nowrap;width:100%;font-stretch:expanded;-webkit-text-stroke:.35px currentColor}
+.brand{font-size:clamp(27px,7vw,32px);font-weight:950;letter-spacing:-1.45px;text-shadow:0 4px 5px rgba(21,33,58,.20),0 9px 18px rgba(21,33,58,.13),0 1px 1px rgba(21,33,58,.12)}
+.sub{color:#8b98b0;font-size:13px;font-weight:750;letter-spacing:.15px;margin-bottom:4px}
+.circle{width:44px;height:44px;flex:none;border-radius:50%;background:#fff;box-shadow:0 8px 22px rgba(35,57,91,.18),0 3px 7px rgba(35,57,91,.09);color:#2563eb;font-size:22px}
+h2{font-size:21px;letter-spacing:-.5px;margin:25px 0 15px;font-weight:900;text-shadow:0 3px 5px rgba(21,33,58,.18),0 7px 15px rgba(21,33,58,.12),0 1px 2px rgba(21,33,58,.08)}
+.stories{display:flex;gap:13px;overflow-x:auto;padding:2px 1px 8px;scrollbar-width:none}
+.stories::-webkit-scrollbar{display:none}
+.story{flex:0 0 76px;text-align:center;font-size:12px;font-weight:650;color:#687894;white-space:nowrap}
+.story img{width:72px;height:86px;object-fit:cover;border-radius:10px;display:block;margin-bottom:8px;background:#e3ebf8;box-shadow:0 8px 20px rgba(34,54,88,.23),0 3px 7px rgba(34,54,88,.12)}
+.story .add{height:86px;border-radius:10px;background:linear-gradient(145deg,#e5efff,#cbdfff);display:grid;place-items:center;color:#2878f5;font-size:31px;margin-bottom:8px;box-shadow:0 8px 21px rgba(40,120,245,.28),0 3px 7px rgba(40,120,245,.14)}
+.online-dot{display:inline-block;width:8px;height:8px;background:#24c875;border-radius:50%;margin-right:4px}
 .section-head{display:flex;align-items:center;justify-content:space-between}
 .section-head h2{margin-top:24px}
-.stories{
-  display:flex;gap:13px;overflow-x:auto;padding:2px 1px 8px;
-  scrollbar-width:none;margin-left:8px;
-}
-.stories::-webkit-scrollbar{display:none}
-.story{
-  flex:0 0 82px;text-align:center;font-size:12px;font-weight:650;
-  color:#d0d1d5;white-space:nowrap;cursor:pointer;
-}
-.story img{
-  width:78px;height:92px;object-fit:cover;border-radius:12px;
-  display:block;margin-bottom:8px;background:#151619;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 0 8px rgba(255,255,255,.055);
-}
-.story .add{
-  height:92px;border-radius:12px;background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;
-  color:#eee;font-size:31px;margin-bottom:8px;
-  box-shadow:0 0 8px rgba(255,255,255,.055);
-}
-.online-dot{
-  display:inline-block;width:7px;height:7px;background:#24c875;
-  border-radius:50%;margin-right:4px;
-}
-.filter{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:13px;padding:9px 12px;color:#eee;font-weight:750;
-}
-.chat{
-  display:flex;align-items:center;gap:12px;padding:13px 11px;margin:8px 0;
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.085);border-radius:15px;
-  box-shadow:0 5px 18px rgba(0,0,0,.16);
-  transition:transform .22s ease,border-color .22s ease;
-  cursor:pointer;
-}
-.avatar{
-  width:54px;height:54px;flex-shrink:0;border-radius:50%;
-  object-fit:cover;background:#202125;border:1px solid rgba(255,255,255,.1);
-}
+.filter{background:#fff;border-radius:13px;padding:9px 12px;color:#3878e8;font-weight:750;box-shadow:0 7px 18px rgba(40,120,245,.18),0 2px 5px rgba(40,120,245,.10)}
+.chat{display:flex;align-items:center;gap:12px;padding:13px 11px;margin:8px 0;background:#ffffffed;border:1px solid #edf1f8;border-radius:12px;box-shadow:0 8px 22px rgba(25,43,75,.15),0 3px 7px rgba(25,43,75,.075);transition:box-shadow .2s ease,transform .2s ease}
+.avatar{width:54px;height:54px;flex-shrink:0;border-radius:50%;object-fit:cover;background:#e7edfa;box-shadow:0 5px 13px rgba(35,57,91,.24),0 2px 4px rgba(35,57,91,.12)}
 .details{flex:1;min-width:0}
-.name{font-size:15px;font-weight:850;margin-bottom:5px;color:#f2f3f5}
-.preview{
-  font-size:13px;font-weight:550;color:#999ba3;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#858790;font-size:11px}
-.unread{
-  min-width:20px;height:20px;border-radius:12px;background:#eee;color:#111;
-  display:grid;place-items:center;font-size:11px;font-weight:900;padding:0 5px;
-}
-.nav{
-  position:fixed;bottom:15px;left:50%;transform:translateX(-50%);
-  width:min(400px,calc(100% - 36px));display:flex;justify-content:space-around;
-  align-items:center;padding:9px 8px calc(9px + env(safe-area-inset-bottom));
-  /* Экран переписки */
-.screen{
-  display:none;position:fixed;inset:0;z-index:20;
-  max-width:520px;margin:auto;background:#090a0c;color:#f3f3f5;
-}
-.screen.open{display:flex;flex-direction:column;animation:content-enter .22s ease both}
-.chat-head{
-  display:flex;align-items:center;gap:12px;padding:12px 15px;
-  padding-top:calc(12px + env(safe-area-inset-top));
-  border-bottom:1px solid rgba(255,255,255,.09);
-  background:rgba(20,20,22,.88);backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-.back{
-  background:transparent;color:#f4f4f5;font-size:27px;
-  padding:4px 7px;line-height:1;
-}
-.chat-head .avatar{width:42px;height:42px}
-.chat-head .details{flex:1}
-.chat-head .name{margin:0 0 4px}
-.chat-head .preview{font-size:12px}
-.head-action{background:transparent;color:#f4f4f5;font-size:21px;padding:7px}
-.messages{
-  flex:1;overflow-y:auto;overscroll-behavior:contain;
-  -webkit-overflow-scrolling:touch;
-  display:flex;flex-direction:column;gap:9px;padding:18px 14px;
-  scrollbar-width:thin;scrollbar-color:#34353a transparent;
-}
-.bubble{
-  max-width:79%;width:fit-content;padding:11px 14px;
-  border-radius:18px;background:#242529;color:#f2f2f4;
-  font-size:14px;line-height:1.4;overflow-wrap:anywhere;
-  border:1px solid rgba(255,255,255,.045);
-}
-.bubble.mine{
-  align-self:flex-end;background:#e7e7eb;color:#161619;
-  border-color:rgba(255,255,255,.12);border-bottom-right-radius:6px;
-}
-.bubble.theirs{align-self:flex-start;border-bottom-left-radius:6px}
-.bubble-time{font-size:10px;opacity:.55;margin-top:5px;text-align:right}
-.composer{
-  display:flex;align-items:flex-end;gap:9px;padding:10px 12px;
-  padding-bottom:calc(10px + env(safe-area-inset-bottom));
-  background:rgba(20,20,22,.9);border-top:1px solid rgba(255,255,255,.08);
-}
-.composer textarea{
-  flex:1;resize:none;min-height:42px;max-height:120px;
-  border-radius:20px;padding:12px 15px;
-  background:#202124;border:1px solid rgba(255,255,255,.09);
-  color:#f6f6f7;font:inherit;font-size:14px;outline:none;
-}
-.composer textarea::placeholder{color:#8c8d95}
-.send{
-  flex-shrink:0;width:42px;height:42px;border-radius:50%;
-  background:#f0f0f2;color:#111;font-size:19px;font-weight:900;
-}
-.empty{
-  color:#898b93;text-align:center;padding:40px 18px;font-size:14px;
-}
-.post{
-  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;padding:15px;margin:12px 0;
-}
-.post-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.post-top .avatar{width:38px;height:38px}
-.post-body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.5}
-.post-date{font-size:11px;color:#858790;margin-top:10px}
-.post-form{
-  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;padding:13px;margin-top:12px;
-}
-.post-form textarea{
-  display:block;width:100%;min-height:80px;resize:vertical;
-  background:transparent;color:#f4f4f5;border:0;outline:none;
-  font:inherit;font-size:14px;
-}
-.post-form textarea::placeholder{color:#858790}
-.post-form button{
-  display:block;margin-left:auto;padding:9px 15px;border-radius:13px;
-  background:#eeeef0;color:#111;font-weight:800;
-}
-.profile-card{
-  padding:22px 16px;text-align:center;
-  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
-  border-radius:20px;margin-top:20px;
-}
-.profile-card .avatar{width:78px;height:78px;margin:0 auto 12px}
-.field{
-  display:block;width:100%;margin:9px 0;padding:13px 14px;
-  border:1px solid rgba(255,255,255,.12);border-radius:13px;
-  background:#17181b;color:#f4f4f5;font:inherit;outline:none;
-}
-.primary{
-  width:100%;padding:13px;border-radius:14px;background:#efeff1;
-  color:#101012;font-weight:850;margin-top:8px;
-}
-.secondary{
-  padding:10px 13px;border-radius:12px;background:#222328;color:#eee;
-  border:1px solid rgba(255,255,255,.1);font-weight:750;
-}
-.toast{
-  position:fixed;left:50%;bottom:95px;transform:translateX(-50%);
-  z-index:100;max-width:calc(100% - 40px);padding:11px 16px;
-  border-radius:13px;background:#292a2e;color:#fff;font-size:13px;
-  box-shadow:0 8px 30px #0008;display:none;
-}
-.toast.show{display:block;animation:content-enter .2s ease both}
+.name{font-size:15px;font-weight:850;margin-bottom:5px}
+.preview{font-size:13px;font-weight:550;color:#8a97ae;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:8px;color:#98a4b8;font-size:11px;font-weight:650}
+.unread{min-width:20px;height:20px;border-radius:12px;background:#2878f5;color:white;display:grid;place-items:center;font-size:11px;font-weight:900;padding:0 5px;box-shadow:0 5px 13px rgba(40,120,245,.38)}
+.nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:min(484px,calc(100% - 28px));display:flex;justify-content:space-around;align-items:center;padding:11px 8px calc(11px + env(safe-area-inset-bottom));border:1px solid #ffffffd9;border-radius:27px;background:#ffffffd9;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 16px 42px rgba(38,59,97,.22),0 5px 13px rgba(38,59,97,.10)}
+.nav button{background:transparent;color:#94a1b8;font-size:11px;font-weight:800;display:flex;align-items:center;flex-direction:column;gap:5px;min-width:56px}
+.nav .ico{width:24px;height:24px;display:grid;place-items:center}.nav .ico svg{width:23px;height:23px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav .active{color:#2878f5;font-weight:900;text-shadow:0 2px 12px rgba(40,120,245,.28)}
+button:active{transform:scale(.96)}
+
+/* FondMess motion layer: subtle, iOS-inspired and respectful of reduced-motion settings */
+.app{animation:app-enter .72s cubic-bezier(.2,.75,.25,1) both}
+.top,.section-head,.stories{animation:content-enter .65s cubic-bezier(.2,.75,.25,1) both}
+.top{animation-delay:.04s}
+.stories{animation-delay:.10s}
+#chats .chat{animation:chat-enter .55s cubic-bezier(.2,.75,.25,1) both}
+#chats .chat:nth-child(1){animation-delay:.08s}
+#chats .chat:nth-child(2){animation-delay:.14s}
+#chats .chat:nth-child(3){animation-delay:.20s}
+#chats .chat:nth-child(4){animation-delay:.26s}
+#chats .chat:nth-child(5){animation-delay:.32s}
+.story{transition:transform .28s cubic-bezier(.2,.8,.2,1),filter .28s ease}
+.story img,.story .add{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease,filter .3s ease}.story .add{border-radius:10px}
+.story:active{transform:scale(.96)}
+.story:active img,.story:active .add{transform:scale(.97);filter:saturate(1.08)}
+.chat{will-change:transform,box-shadow}
+.chat:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(37,56,88,.17),0 3px 8px rgba(37,56,88,.08)}
+.chat:active{transform:scale(.985);box-shadow:0 4px 12px rgba(37,56,88,.12)}
+.circle,.filter,.nav button{transition:transform .22s cubic-bezier(.2,.8,.2,1),background .22s ease,color .22s ease,box-shadow .22s ease}
+.circle:active,.filter:active{transform:scale(.93)}
+.nav{isolation:isolate;animation:nav-enter .7s .22s cubic-bezier(.2,.75,.25,1) both}
+.nav::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.7),rgba(255,255,255,.12) 42%,rgba(210,226,255,.22));z-index:-1}
+.nav button{position:relative;padding:2px 5px;border-radius:16px}
+.nav button:active{transform:scale(.91)}
+.nav .ico{transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.nav button.active .ico{transform:translateY(-2px) scale(1.08)}
+.online-dot{animation:online-pulse 2.4s ease-in-out infinite}
+.unread{animation:badge-pop .45s .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes app-enter{from{opacity:0;transform:translateY(12px) scale(.992)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes content-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes chat-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nav-enter{from{opacity:0;transform:translate(-50%,14px) scale(.97)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+@keyframes badge-pop{0%{opacity:0;transform:scale(.65)}70%{transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+@keyframes online-pulse{0%,100%{box-shadow:0 0 0 0 rgba(36,200,117,0)}50%{box-shadow:0 0 0 4px rgba(36,200,117,.12)}}
+@media (hover:none){.chat:hover{transform:none}}
 @media (prefers-reduced-motion:reduce){
-  .app,.top,.section-head,.stories,#chats .chat,.screen.open{animation:none!important}
-  .fm-particles i{animation:none!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
+
+@media(min-width:700px){body{padding:24px 0}.app{border-radius:30px;box-shadow:0 20px 80px #203b6414;min-height:calc(100vh - 48px)}}
+
+.chat{cursor:pointer}.chat:focus-visible,.story:focus-visible,button:focus-visible{outline:2px solid #2878f5;outline-offset:3px}
+.chat-overlay{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:14px;background:#17233b66;backdrop-filter:blur(12px)}
+.chat-overlay.open{display:flex;animation:content-enter .25s ease both}
+.chat-window{width:min(520px,100%);height:min(760px,calc(100dvh - 28px));display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,#fff,#f5f8ff 65%,#edf4ff);color:#15213a;border-radius:26px;border:1px solid #fff;box-shadow:0 25px 90px #1b2e5060;animation:chat-enter .32s cubic-bezier(.2,.75,.25,1) both}
+.chat-head{display:flex;align-items:center;gap:11px;padding:15px 17px;border-bottom:1px solid #e8edf7}.chat-head .avatar{width:44px;height:44px}.chat-head .details{flex:1}.chat-head .name{font-size:16px}.chat-head .preview{color:#7b89a4}
+.chat-messages{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:18px;background:linear-gradient(180deg,#f8faff,#f1f5ff)}
+.message-bubble{max-width:82%;padding:10px 13px;border-radius:17px;background:#fff;border:1px solid #e7edf8;box-shadow:0 4px 12px #253b6010;white-space:pre-wrap;overflow-wrap:anywhere;animation:chat-enter .22s ease both}.message-bubble.mine{align-self:flex-end;color:#fff;background:linear-gradient(135deg,#2878f5,#6b70f4);border-color:transparent;border-bottom-right-radius:5px}.message-bubble.theirs{align-self:flex-start;border-bottom-left-radius:5px}.message-bubble small{display:block;text-align:right;margin-top:4px;font-size:10px;opacity:.65}
+.chat-compose{display:flex;gap:8px;padding:12px;border-top:1px solid #e8edf7;background:#fff}.chat-compose textarea{flex:1;min-width:0;resize:none;max-height:100px;border:1px solid #dfe7f5;border-radius:15px;padding:11px 13px;color:#15213a;background:#f8faff;outline:none;font:inherit}.chat-compose textarea:focus{border-color:#7ca5ff;box-shadow:0 0 0 3px #2878f518}.chat-compose button{width:44px;flex:none;border-radius:14px;background:linear-gradient(135deg,#2878f5,#6b70f4);color:#fff;box-shadow:0 5px 13px #2878f530}
+.story{cursor:pointer}.story-modal-card{width:min(400px,100%);padding:18px;border-radius:25px;background:linear-gradient(160deg,#fff,#f1f5ff);color:#15213a;box-shadow:0 25px 80px #1b2e5060}.story-modal-card .story-art{height:360px;border-radius:20px;display:grid;place-items:center;font-size:72px;color:#fff;background:linear-gradient(145deg,#6688f5,#a77be8,#5ccfb5);margin:14px 0}.story-modal-card input{width:100%;border:1px solid #dce5f4;border-radius:13px;padding:11px;color:#15213a;background:#fff;font:inherit;margin:6px 0}.story-modal-card .story-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+@media(max-width:520px){.chat-window{height:calc(100dvh - 16px);border-radius:21px}.chat-overlay{padding:8px}.story-modal-card .story-art{height:45vh}}
+
+
+.chat{cursor:pointer}.chat:focus-visible,.story:focus-visible,button:focus-visible{outline:2px solid #2878f5;outline-offset:3px}
+.chat-overlay{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:14px;background:#17233b66;backdrop-filter:blur(12px)}
+.chat-overlay.open{display:flex;animation:content-enter .25s ease both}
+.chat-window{width:min(520px,100%);height:min(760px,calc(100dvh - 28px));display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,#fff,#f5f8ff 65%,#edf4ff);color:#15213a;border-radius:26px;border:1px solid #fff;box-shadow:0 25px 90px #1b2e5060;animation:chat-enter .32s cubic-bezier(.2,.75,.25,1) both}
+.chat-head{display:flex;align-items:center;gap:11px;padding:15px 17px;border-bottom:1px solid #e8edf7}.chat-head .avatar{width:44px;height:44px}.chat-head .details{flex:1}.chat-head .name{font-size:16px}.chat-head .preview{color:#7b89a4}
+.chat-messages{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:18px;background:linear-gradient(180deg,#f8faff,#f1f5ff)}
+.message-bubble{max-width:82%;padding:10px 13px;border-radius:17px;background:#fff;border:1px solid #e7edf8;box-shadow:0 4px 12px #253b6010;white-space:pre-wrap;overflow-wrap:anywhere;animation:chat-enter .22s ease both}.message-bubble.mine{align-self:flex-end;color:#fff;background:linear-gradient(135deg,#2878f5,#6b70f4);border-color:transparent;border-bottom-right-radius:5px}.message-bubble.theirs{align-self:flex-start;border-bottom-left-radius:5px}.message-bubble small{display:block;text-align:right;margin-top:4px;font-size:10px;opacity:.65}
+.chat-compose{display:flex;gap:8px;padding:12px;border-top:1px solid #e8edf7;background:#fff}.chat-compose textarea{flex:1;min-width:0;resize:none;max-height:100px;border:1px solid #dfe7f5;border-radius:15px;padding:11px 13px;color:#15213a;background:#f8faff;outline:none;font:inherit}.chat-compose textarea:focus{border-color:#7ca5ff;box-shadow:0 0 0 3px #2878f518}.chat-compose button{width:44px;flex:none;border-radius:14px;background:linear-gradient(135deg,#2878f5,#6b70f4);color:#fff;box-shadow:0 5px 13px #2878f530}
+.story{cursor:pointer}.story-modal-card{width:min(400px,100%);padding:18px;border-radius:25px;background:linear-gradient(160deg,#fff,#f1f5ff);color:#15213a;box-shadow:0 25px 80px #1b2e5060}.story-modal-card .story-art{height:360px;border-radius:20px;display:grid;place-items:center;font-size:72px;color:#fff;background:linear-gradient(145deg,#6688f5,#a77be8,#5ccfb5);margin:14px 0}.story-modal-card input{width:100%;border:1px solid #dce5f4;border-radius:13px;padding:11px;color:#15213a;background:#fff;font:inherit;margin:6px 0}.story-modal-card .story-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+@media(max-width:520px){.chat-window{height:calc(100dvh - 16px);border-radius:21px}.chat-overlay{padding:8px}.story-modal-card .story-art{height:45vh}}
+
+
+/* Refined iOS-style interaction: subtle tap, then a soft spring on hold */
+:root{--fm-spring:cubic-bezier(.2,.85,.25,1.18)}
+.chat,.story,.circle,.filter,.nav button,.chat-compose button,.story-modal-card button{
+  transform-origin:center;
+  transition:transform .34s var(--fm-spring),box-shadow .3s ease,background-color .24s ease,filter .24s ease;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+/* Pressing a chat visibly zooms it forward, like the reference interaction. */
+.chat.fm-pressed{transform:scale(1.045);z-index:3;box-shadow:0 16px 34px rgba(25,43,75,.22),0 5px 12px rgba(25,43,75,.1);transition-duration:.16s}
+.story.fm-pressed{transform:scale(1.055);z-index:3;filter:saturate(1.08);transition-duration:.16s}
+.circle.fm-pressed,.filter.fm-pressed,.nav button.fm-pressed,.chat-compose button.fm-pressed,.story-modal-card button.fm-pressed{transform:scale(.96);transition-duration:.12s}
+/* If the finger stays down, the card gently grows a little more. */
+.chat.fm-hold{transform:scale(1.075);z-index:4;box-shadow:0 20px 42px rgba(25,43,75,.25),0 6px 15px rgba(25,43,75,.12)}
+.story.fm-hold{transform:scale(1.075);z-index:4;filter:saturate(1.1)}
+.circle.fm-hold,.filter.fm-hold,.story-modal-card button.fm-hold{transform:scale(1.045);box-shadow:0 8px 19px rgba(40,120,245,.2)}
+.nav button.fm-hold{transform:scale(1.035);background:rgba(40,120,245,.07)}
+.nav button.fm-hold .ico{transform:scale(1.06)}
+.chat-compose button.fm-hold{transform:scale(1.045);box-shadow:0 7px 17px rgba(40,120,245,.3)}
+.story.fm-hold img,.story.fm-hold .add{transform:scale(1.06);box-shadow:0 12px 25px rgba(40,120,245,.24)}
+@media(hover:hover){.chat:hover{transform:translateY(-1px)}}
+@media(prefers-reduced-motion:reduce){.chat,.story,.circle,.filter,.nav button,.chat-compose button,.story-modal-card button{transition:none!important}}
+
+
+/* Soft depth for FondMessages branding and message bubbles */
+.brand{filter:drop-shadow(0 3px 5px rgba(19,31,52,.10))}
+.section-head h2{filter:drop-shadow(0 3px 4px rgba(19,31,52,.08))}
+.message-bubble{box-shadow:0 3px 7px rgba(24,42,73,.07),0 8px 18px rgba(24,42,73,.07)}
+.message-bubble.mine{box-shadow:0 4px 9px rgba(40,120,245,.18),0 9px 20px rgba(40,120,245,.13)}
+.chat-compose{box-shadow:0 -5px 16px rgba(28,45,75,.045)}
+
+
+/* FondMessages agreed black glass redesign */
+:root{color:#f2f3f5!important;background:#08090b!important}
+body{background:#08090b!important;color:#f2f3f5!important;overflow-x:hidden}
+.app{position:relative;background:transparent!important;color:#f2f3f5!important;isolation:isolate;z-index:1}
+.app:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 20% 20%,rgba(180,190,205,.06),transparent 34%),radial-gradient(circle at 80% 65%,rgba(180,190,205,.045),transparent 35%)}
+.fm-particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;contain:strict}
+.fm-particles i{position:absolute;display:block;border-radius:57% 43% 66% 34% / 43% 57% 39% 61%;background:rgba(242,244,248,.22);border:0;box-shadow:none;filter:blur(32px);animation:fm-drift var(--dur,7s) linear infinite alternate;opacity:var(--op,.7);will-change:transform}
+@keyframes fm-drift{0%{transform:translate3d(-10vw,12vh,0)}25%{transform:translate3d(8vw,-14vh,0)}50%{transform:translate3d(-5vw,-28vh,0)}75%{transform:translate3d(12vw,5vh,0)}100%{transform:translate3d(-8vw,24vh,0)}}
+.app>*{position:relative;z-index:1}.app{padding-bottom:105px!important}
+.top{display:grid!important;grid-template-columns:1fr auto 1fr!important;align-items:center!important;gap:8px!important;margin:8px 0 18px!important}
+.brand-wrap{grid-column:2;grid-row:1;justify-content:center!important}
+.brand{font-size:clamp(25px,6.6vw,31px)!important;font-weight:950!important;letter-spacing:-1.25px!important;color:#f5f5f6!important;text-shadow:none!important;filter:none!important;text-align:center}
+.top>.circle{grid-column:3;grid-row:1;justify-self:end;background:rgba(255,255,255,.055)!important;color:#e6e7ea!important;border:1px solid rgba(255,255,255,.09);box-shadow:0 8px 24px rgba(0,0,0,.2)!important}
+.fm-top-switch{grid-column:1;grid-row:1;justify-self:start;display:flex;gap:3px;padding:4px;border:1px solid rgba(255,255,255,.11);border-radius:15px;background:rgba(255,255,255,.065);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.fm-top-switch button{border-radius:11px;padding:9px 10px;color:#aeb2ba;background:transparent;font-size:12px;font-weight:800;white-space:nowrap}
+.fm-top-switch button.active{background:rgba(255,255,255,.13);color:#fff;box-shadow:inset 0 1px rgba(255,255,255,.08)}
+h2,.section-head h2{color:#f0f1f3!important;text-shadow:none!important}
+.sub,.preview,.meta,.story{color:#a5a9b1!important}
+.story{flex:0 0 124px!important}
+.story img,.story .add{width:118px!important;height:118px!important;aspect-ratio:1/1!important;object-fit:cover;border-radius:13px!important;box-shadow:0 0 0 1px rgba(255,255,255,.10),0 0 7px rgba(215,220,230,.09)!important;border:1px solid rgba(255,255,255,.15);background:#141518!important;color:#e8e9ec!important}
+.filter{background:rgba(255,255,255,.075)!important;color:#f0f1f3!important;border:1px solid rgba(255,255,255,.11);box-shadow:none!important;border-radius:14px!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.chat{background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:20px!important;box-shadow:0 8px 24px rgba(0,0,0,.14)!important;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.avatar{background:#25272b!important;box-shadow:none!important}
+.nav{display:flex!important;position:fixed!important;z-index:30!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;left:50%!important;transform:translateX(-50%)!important;width:min(484px,calc(100% - 24px))!important;background:rgba(18,20,24,.86)!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:0 10px 34px rgba(0,0,0,.4)!important;backdrop-filter:blur(28px)!important;-webkit-backdrop-filter:blur(28px)!important}.nav button{color:#a9adb5!important}.nav button.active{color:#f4f5f7!important}.nav .ico{color:inherit!important}
+#chats .chat .unread{background:#e8e9eb!important;color:#151619!important;box-shadow:none!important}
+#fmPostsPanel{display:none;position:relative;z-index:2;margin-top:16px}
+#fmPostsPanel .post-composer,#fmPostsPanel .post-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:15px;margin:10px 0;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 8px 24px rgba(0,0,0,.14)}
+#fmPostsPanel textarea{width:100%;min-height:86px;resize:vertical;background:rgba(0,0,0,.18);color:#f4f4f5;border:1px solid rgba(255,255,255,.1);border-radius:15px;padding:12px;font:inherit;outline:none}
+#fmPostsPanel textarea::placeholder{color:#9297a0}
+#fmPostsPanel .post-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;color:#a4a8b0;font-size:12px}
+#fmPostsPanel .post-actions button{background:rgba(255,255,255,.13);color:#fff;padding:10px 15px;border-radius:13px;font-weight:850}
+#fmPostsPanel .post-author{font-weight:850;color:#f4f4f5}#fmPostsPanel .post-time{font-size:12px;color:#969ba4;margin-left:6px}#fmPostsPanel .post-text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.45;margin:12px 0;color:#e2e3e6}
+.fm-cloud-note{color:#8e939c;font-size:12px;margin:8px 2px}
+@media(max-width:390px){.fm-top-switch button{padding:8px 7px;font-size:11px}.brand{font-size:23px!important;letter-spacing:-1px!important}.story{flex-basis:108px!important}.story img,.story .add{width:102px!important;height:102px!important}}
+@media(prefers-reduced-motion:reduce){.fm-particles i{animation:none!important}}
+/* Refined dark iOS-style floating glass navigation */
+.nav{width:min(420px,calc(100% - 34px))!important;min-height:76px!important;padding:10px 18px calc(10px + env(safe-area-inset-bottom))!important;justify-content:space-between!important;gap:14px!important;border-radius:28px!important;background:rgba(29,30,34,.76)!important;border:1px solid rgba(255,255,255,.13)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.075),0 12px 38px rgba(0,0,0,.42)!important;backdrop-filter:blur(36px) saturate(145%)!important;-webkit-backdrop-filter:blur(36px) saturate(145%)!important}
+.nav:before{content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(145deg,rgba(255,255,255,.055),transparent 58%)}
+.nav button{flex:1;min-width:0!important;gap:6px!important;padding:5px 8px!important;border-radius:19px!important;color:#92959e!important;font-size:12px!important;font-weight:650!important;letter-spacing:.05px}
+.nav button.active{color:#f5f5f7!important;background:rgba(255,255,255,.095)!important;text-shadow:none!important;box-shadow:inset 0 1px rgba(255,255,255,.06)!important}
+.nav .ico{width:26px!important;height:26px!important}.nav .ico svg{width:24px!important;height:24px!important;stroke-width:1.65!important}
+.section-head h2{margin-left:5px!important}.stories{padding-left:6px!important;padding-right:2px!important}.section-head .filter{margin-right:2px!important}
+
+
+/* v6: smoother performance + consistent dark glass */
+.fm-particles{z-index:0;contain:paint;}
+.fm-particles i{filter:blur(28px);opacity:var(--op,.42);will-change:transform;backface-visibility:hidden;animation-timing-function:ease-in-out;}
+@keyframes fm-drift{0%{transform:translate3d(-5vw,6vh,0) scale(.96)}50%{transform:translate3d(4vw,-7vh,0) scale(1.04)}100%{transform:translate3d(-3vw,8vh,0) scale(.98)}}
+/* Keep content above the moving blurred patches without animating content itself */
+.app>*{z-index:1}
+.section-head{padding-left:8px!important;transform:translateX(5px)}
+.section-head h2{margin-left:0!important}
+.stories{padding-left:5px!important}
+.story img,.story .add{background:#151619!important;color:#e8e9ec!important;box-shadow:0 0 0 1px rgba(255,255,255,.10),0 0 5px rgba(215,220,230,.055)!important}
+.chat{background:rgba(20,21,24,.74)!important;color:#f1f2f4!important;border-color:rgba(255,255,255,.085)!important;box-shadow:0 5px 16px rgba(0,0,0,.18)!important;backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important}
+.chat .name,.chat .preview,.chat .meta{color:#f0f1f3!important}
+.chat .preview,.chat .meta{color:#a4a8b0!important}
+.chat-window{background:rgba(16,17,20,.96)!important;color:#f1f2f4!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:0 25px 90px rgba(0,0,0,.65)!important;backdrop-filter:blur(28px)!important;-webkit-backdrop-filter:blur(28px)!important}
+.chat-head,.chat-compose{background:rgba(20,21,24,.94)!important;color:#f1f2f4!important;border-color:rgba(255,255,255,.09)!important}
+.chat-messages{background:rgba(10,11,13,.92)!important}
+.message-bubble{background:rgba(39,40,44,.9)!important;color:#f1f2f4!important;border-color:rgba(255,255,255,.09)!important;box-shadow:none!important}
+.message-bubble.mine{background:rgba(91,96,112,.78)!important;color:#fff!important}
+.message-bubble.theirs{background:rgba(39,40,44,.9)!important;color:#f1f2f4!important}
+.chat-compose input,.chat-compose textarea{background:rgba(255,255,255,.07)!important;color:#f4f4f5!important;border-color:rgba(255,255,255,.12)!important}
+.story-modal-card{background:rgba(19,20,23,.97)!important;color:#f1f2f4!important;border:1px solid rgba(255,255,255,.11)!important;box-shadow:0 25px 80px rgba(0,0,0,.65)!important}
+.story-modal-card input{background:#17181b!important;color:#f2f3f5!important;border-color:rgba(255,255,255,.13)!important}
+.nav{min-height:58px!important;padding:6px 12px calc(6px + env(safe-area-inset-bottom))!important;gap:8px!important;width:min(340px,calc(100% - 52px))!important;border-radius:22px!important;backdrop-filter:blur(24px) saturate(130%)!important;-webkit-backdrop-filter:blur(24px) saturate(130%)!important}
+.nav button{font-size:10px!important;line-height:1.15!important;gap:3px!important;padding:4px 7px!important;min-width:0!important}
+.nav .ico svg{width:17px!important;height:17px!important}
+@media(prefers-reduced-motion:reduce){.fm-particles i{animation:none!important}}
+
+
+/* v7: subtle alignment nudge and smoother, less distracting background motion */
+.section-head{padding-left:12px!important;transform:translateX(9px)!important}
+.stories{padding-left:10px!important}
+.fm-particles{contain:strict!important;}
+.fm-particles i{filter:blur(30px)!important;animation-timing-function:ease-in-out!important;}
+@keyframes fm-drift{0%{transform:translate3d(-3vw,4vh,0)}50%{transform:translate3d(3vw,-4vh,0)}100%{transform:translate3d(-2vw,5vh,0)}}
+@media(prefers-reduced-motion:reduce){.fm-particles i{animation:none!important}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div class="fm-particles" id="particles" aria-hidden="true"></div>
-
-<main class="app" id="home">
+<main class="app">
   <header class="top">
+    <div class="fm-top-switch" role="tablist" aria-label="Раздел">
+      <button class="active" id="fmTabChats" onclick="fmSwitchTop('chats')">Чаты</button>
+      <button id="fmTabPosts" onclick="fmSwitchTop('posts')">Посты</button>
+    </div>
     <div class="brand-wrap"><div class="brand">FondMessages</div></div>
-    <button class="circle" id="settingsButton" aria-label="Настройки">⚙</button>
+    <button class="circle" aria-label="Search" onclick="searchChats()">⌕</button>
   </header>
-
-  <div class="section-head">
-    <div>
-      <div class="sub">YOUR SPACE</div>
-      <h2 id="mainHeading">Stories</h2>
-    </div>
-    <button class="filter" id="viewToggle">Чаты / Посты</button>
-  </div>
-
-  <section class="stories" id="stories">
-    <div class="story" id="addStory">
-      <div class="add">＋</div>
-      Ваша история
-    </div>
+  <div class="section-head"><h2 style="margin-top:0">Stories</h2><button class="filter" onclick="alert('Stories will be available when we connect the backend.')">＋ Add</button></div>
+  <section class="stories" id="fmStoriesList">
+    <div class="story"><div class="add">＋</div>Your story</div>
   </section>
-
-  <div class="section-head">
-    <h2 id="listHeading">Messages</h2>
-    <button class="filter" id="refreshButton">↻</button>
-  </div>
-
-  <section id="chats">
-    <div class="empty" id="loadingText">Загрузка чатов…</div>
-  </section>
-
-  <section id="postsSection" hidden>
-    <form class="post-form" id="postForm">
-      <textarea id="postText" maxlength="280" placeholder="Что у тебя нового?" required></textarea>
-      <button type="submit">Опубликовать</button>
-    </form>
-    <div id="postsList"><div class="empty">Загрузка публикаций…</div></div>
+  <div class="section-head"><h2>Messages</h2><button class="filter" onclick="searchChats()">⌕ Search</button></div>
+  <section id="chats" aria-live="polite"></section>
+  <section id="fmPostsPanel" aria-label="Публикации">
+    <h2 style="margin-top:8px">Лента</h2>
+    <div class="post-composer"><textarea id="fmPostText" maxlength="280" placeholder="Что нового?"></textarea><div class="post-actions"><span>До 280 символов</span><button onclick="fmPublishPost()">Опубликовать</button></div></div>
+    <div class="fm-cloud-note" id="fmPostsNote">Публикации будут видны вошедшим пользователям.</div>
+    <div id="fmPostsList"></div>
   </section>
 </main>
-
+<div class="fm-particles" id="fmParticles" aria-hidden="true"></div>
 <nav class="nav" aria-label="Основная навигация">
-  <button class="active" data-tab="profile">
-    <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.5-4 3-6 7-6s6.5 2 7 6"/></svg></span>
-    Профиль
-  </button>
-  <button data-tab="friends">
-    <span class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.5-4 2.5-6 6.5-6s6 2 6.5 6M15 15c3.5-.2 5.5 1.5 6 4"/></svg></span>
-    Друзья
-  </button>
-  <button data-tab="calls">
-    <span class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.2 1.8a15 15 0 0 0 5.4 5.4L16 13l5 2v3c0 1.1-.9 2-2 2C10 19.5 4.5 14 4 5c0-1.1.9-2 2-2Z"/></svg></span>
-    Звонки
-  </button>
+  <button onclick="showTab(this,'Profile')"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c.5-4 3.2-6.2 7.5-6.2s7 2.2 7.5 6.2"/></svg></span>Профиль</button>
+  <button onclick="showTab(this,'Friends')"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.3"/><path d="M2.8 19c.4-3.1 2.7-5 6.2-5s5.8 1.9 6.2 5M16 5.2a3.1 3.1 0 0 1 0 5.8M17 14.2c2.4.5 3.8 2.1 4.1 4.8"/></svg></span>Друзья</button>
+  <button onclick="showTab(this,'Calls')"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.8 10 3l2 4.8-2.2 1.7a15 15 0 0 0 4.7 4.7l1.7-2.2 4.8 2-.8 3c-.4 1.3-1.7 2.1-3.1 1.8A18.7 18.7 0 0 1 5.2 8.9C4.9 7.5 5.7 4.2 7 3.8Z"/></svg></span>Звонки</button>
 </nav>
-
-<section class="screen" id="chatScreen" aria-label="Переписка">
-  <header class="chat-head">
-    <button class="back" id="backButton" aria-label="Назад">‹</button>
-    <img class="avatar" id="chatAvatar" alt="" src="">
-    <div class="details">
-      <div class="name" id="chatName">Чат</div>
-      <div class="preview" id="chatStatus">FondMessages</div>
-    </div>
-    <button class="head-action" id="callButton" aria-label="Звонок">☎</button>
-  </header>
-  <div class="messages" id="messagesList"></div>
-  <form class="composer" id="messageForm">
-    <textarea id="messageText" rows="1" placeholder="Сообщение…" required></textarea>
-    <button class="send" type="submit" aria-label="Отправить">↑</button>
-  </form>
-</section>
-
-<section class="screen" id="profileScreen" aria-label="Профиль">
-  <header class="chat-head">
-    <button class="back" data-close="profileScreen" aria-label="Назад">‹</button>
-    <div class="details"><div class="name">Профиль</div><div class="preview">FondMessages</div></div>
-  </header>
-  <div style="padding:18px;overflow:auto">
-    <div class="profile-card">
-      <img class="avatar" id="profileAvatar" alt="" src="">
-      <div class="name" id="profileName">Гость</div>
-      <div class="preview" id="profileEmail">Войдите, чтобы продолжить</div>
-    </div>
-    <form id="authForm">
-      <input class="field" id="authEmail" type="email" placeholder="Email" autocomplete="email" required>
-      <input class="field" id="authPassword" type="password" placeholder="Пароль" autocomplete="current-password" required>
-      <button class="primary" type="submit" id="loginButton">Войти / Зарегистрироваться</button>
-    </form>
-    <button class="secondary" id="logoutButton" style="width:100%;margin-top:10px">Выйти</button>
-  </div>
-</section>
-
-<section class="screen" id="friendsScreen" aria-label="Друзья">
-  <header class="chat-head">
-    <button class="back" data-close="friendsScreen" aria-label="Назад">‹</button>
-    <div class="details"><div class="name">Друзья</div><div class="preview">Пользователи FondMessages</div></div>
-  </header>
-  <div id="friendsList" style="padding:15px;overflow:auto"></div>
-</section>
-
-<section class="screen" id="callsScreen" aria-label="Звонки">
-  <header class="chat-head">
-    <button class="back" data-close="callsScreen" aria-label="Назад">‹</button>
-    <div class="details"><div class="name">Звонки</div><div class="preview">История звонков</div></div>
-  </header>
-  <div class="empty">Звонки пока не подключены.</div>
-</section>
-
-<div class="toast" id="toast" role="status"></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-"use strict";
 
-/* 1. Подключение Supabase */
-const SUPABASE_URL = "https://ddfxsdgytkpzzhsuvvbt.supabase.co";
-const SUPABASE_KEY = "sb_publishable_G-t30ZePWWdhlAxdFcOdnw_CZYC7Tfd";
 
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+function fmSwitchTop(tab){const posts=tab==='posts';document.getElementById('chats').style.display=posts?'none':'';document.getElementById('fmPostsPanel').style.display=posts?'block':'none';document.getElementById('fmTabChats').classList.toggle('active',!posts);document.getElementById('fmTabPosts').classList.toggle('active',posts);const storiesHead=document.querySelector('.section-head');if(storiesHead)storiesHead.style.display=posts?'none':'';document.querySelector('.stories').style.display=posts?'none':'';if(posts)fmLoadPosts()}
+function fmMakeParticles(){const layer=document.getElementById('fmParticles');if(!layer||layer.childElementCount)return;for(let i=0;i<7;i++){const dot=document.createElement('i');const w=Math.round(95+Math.random()*55),h=Math.round(75+Math.random()*55);const shapes=['57% 43% 66% 34% / 43% 57% 39% 61%','38% 62% 48% 52% / 59% 36% 64% 41%','63% 37% 41% 59% / 46% 58% 42% 54%'];dot.style.cssText=`left:${Math.random()*94}%;top:${Math.random()*92}%;width:${w}px;height:${h}px;border-radius:${shapes[i%shapes.length]};--dur:${18+Math.random()*10}s;--op:${(.28+Math.random()*.22).toFixed(2)};animation-delay:-${Math.random()*7}s`;layer.appendChild(dot)}}
+async function fmLoadPosts(){const list=document.getElementById('fmPostsList'),note=document.getElementById('fmPostsNote');if(!window.fmDb){list.innerHTML='<div class="fm-cloud-note">Подключение к Supabase ещё запускается…</div>';return}const {data,error}=await fmDb.from('posts').select('id,user_id,content,created_at').order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='';note.textContent='Для ленты нужно создать таблицу posts в Supabase. Подробности ниже в чате.';return}if(!data?.length){list.innerHTML='<div class="fm-cloud-note">Пока нет публикаций. Будь первым!</div>';return}let profileMap={};const ids=[...new Set(data.map(p=>p.user_id))];const {data:profiles}=await fmDb.from('profiles').select('id,username,display_name').in('id',ids);(profiles||[]).forEach(p=>profileMap[p.id]=p);list.innerHTML=data.map(p=>{const user=profileMap[p.user_id]||{};return `<article class="post-card"><div><span class="post-author">${fmEsc(user.display_name||'Пользователь')}</span><span class="post-time">@${fmEsc(user.username||'user')} · ${new Date(p.created_at).toLocaleDateString()}</span></div><div class="post-text">${fmEsc(p.content)}</div></article>`}).join('')}
+async function fmPublishPost(){const box=document.getElementById('fmPostText'),content=box.value.trim();if(!content)return;if(!window.fmUser){fmNotice('Войди в аккаунт, чтобы публиковать посты.');return}const {error}=await fmDb.from('posts').insert({user_id:fmUser.id,content});if(error){fmNotice('Не удалось опубликовать: '+error.message+' — проверь таблицу posts в Supabase.');return}box.value='';await fmLoadPosts()}
+const FM_KEY='fondmess.original.v1';
+const FM_SEED=[{id:'fondbot',name:'FondBot',emoji:'🤖',avatar:'',status:'Always here',messages:[{text:'Привет! Я FondBot 🤖 Можешь написать мне или добавить человека в контакты.',mine:false,time:'Сейчас'}]}];
+let fmChats=[],fmStories=[],fmCurrent=null,fmShowHistory=false;
+function fmLoad(){try{const saved=JSON.parse(localStorage.getItem(FM_KEY+'chats'));fmChats=Array.isArray(saved)?saved.filter(c=>c.id==='fondbot'||c.isContact):JSON.parse(JSON.stringify(FM_SEED));fmStories=JSON.parse(localStorage.getItem(FM_KEY+'stories'))||[]}catch(e){fmChats=JSON.parse(JSON.stringify(FM_SEED));fmStories=[]}if(!fmChats.some(c=>c.id==='fondbot'))fmChats.unshift(JSON.parse(JSON.stringify(FM_SEED[0])));fmStories=fmStories.filter(x=>x.isMine);fmSave()}
+function fmSave(){try{localStorage.setItem(FM_KEY+'chats',JSON.stringify(fmChats));localStorage.setItem(FM_KEY+'stories',JSON.stringify(fmStories))}catch(e){}}
+function fmEsc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fmTime(){return new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}
+function fmLast(c){return c.messages[c.messages.length-1]}
+function fmEnsureUI(){if(document.getElementById('fmChatOverlay'))return;document.body.insertAdjacentHTML('beforeend',`<div class="chat-overlay" id="fmChatOverlay"><section class="chat-window"><header class="chat-head"><button class="circle" id="fmBack" aria-label="Back"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m15 18-6-6 6-6"/></svg></button><img class="avatar" id="fmAvatar" alt=""><div class="details"><div class="name" id="fmName"></div><div class="preview" id="fmStatus"></div></div><button class="circle" id="fmHistory" title="View history" aria-label="Chat history"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="8.5"/><path d="M12 6.8v5.5l3.5 2"/></svg></button><button class="circle" id="fmOptions" title="Chat options" aria-label="Chat options"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill:currentColor"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></button></header><div class="chat-messages" id="fmMessages"></div><form class="chat-compose" id="fmCompose"><textarea id="fmInput" rows="1" placeholder="Write a message..." aria-label="Message"></textarea><button aria-label="Send"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true" style="fill:currentColor"><path d="M2.8 20.2 22 12 2.8 3.8l.1 6.4 13.3 1.8-13.3 1.8z"/></svg></button></form></section></div><div class="chat-overlay" id="fmStoryOverlay"><section class="story-modal-card" id="fmStoryCard"></section></div>`);document.getElementById('fmBack').onclick=()=>document.getElementById('fmChatOverlay').classList.remove('open');document.getElementById('fmChatOverlay').onclick=e=>{if(e.target.id==='fmChatOverlay')e.currentTarget.classList.remove('open')};document.getElementById('fmStoryOverlay').onclick=e=>{if(e.target.id==='fmStoryOverlay')e.currentTarget.classList.remove('open')};document.getElementById('fmCompose').onsubmit=e=>{e.preventDefault();fmSend(document.getElementById('fmInput').value)};document.getElementById('fmInput').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();document.getElementById('fmCompose').requestSubmit()}};document.getElementById('fmHistory').onclick=()=>{fmShowHistory=!fmShowHistory;fmRenderMessages()};document.getElementById('fmOptions').onclick=fmOptions}
+function fmRenderList(){const q=(document.getElementById('fmSearch')?.value||'').toLowerCase(),list=document.getElementById('chats');if(!list)return;list.innerHTML='';const visible=fmChats.filter(c=>(c.name+' '+(fmLast(c)?.text||'')).toLowerCase().includes(q));if(!visible.length){list.innerHTML='<div style="padding:28px 12px;text-align:center;color:#8290a8">Пока нет чатов. Добавь контакт через раздел Friends.</div>';return}visible.forEach(c=>{const a=document.createElement('article');a.className='chat';a.tabIndex=0;a.setAttribute('role','button');const av=c.avatar?`<img class="avatar" src="${fmEsc(c.avatar)}" alt="">`:`<div class="avatar" style="display:grid;place-items:center;font-size:25px">${fmEsc(c.emoji)}</div>`;a.innerHTML=`${av}<div class="details"><div class="name">${fmEsc(c.name)}</div><div class="preview">${fmEsc(fmLast(c)?.text||'No messages yet')}</div></div><div class="meta"><span>${fmEsc(fmLast(c)?.time||'')}</span></div>`;a.onclick=()=>fmOpen(c.id);a.onkeydown=e=>{if(e.key==='Enter'){fmOpen(c.id)}};list.appendChild(a)})}
+function fmOpen(id){fmCurrent=id;fmShowHistory=false;const c=fmChats.find(x=>x.id===id);if(!c)return;fmEnsureUI();document.getElementById('fmName').textContent=c.name;document.getElementById('fmStatus').textContent=c.status||'Chat';const av=document.getElementById('fmAvatar');av.src=c.avatar||'';av.style.display=c.avatar?'block':'none';fmRenderMessages();document.getElementById('fmChatOverlay').classList.add('open')}
+function fmRenderMessages(){const c=fmChats.find(x=>x.id===fmCurrent);if(!c)return;const el=document.getElementById('fmMessages'),msgs=fmShowHistory?c.messages:c.messages.slice(-80);el.innerHTML=`<div class="day-label">${fmShowHistory?'Full chat history':'Messages'}</div>`+(msgs.length?msgs.map(m=>`<div class="message-bubble ${m.mine?'mine':'theirs'}">${fmEsc(m.text)}<small>${fmEsc(m.time||'')}</small></div>`).join(''):'<div class="empty">No messages yet. Say hello 👋</div>');el.scrollTop=el.scrollHeight;document.getElementById('fmHistory').innerHTML=fmShowHistory?'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M9 14 4 9l5-5"/><path d="M4 9h9a6 6 0 1 1-5.5 8.4"/></svg>':'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="8.5"/><path d="M12 6.8v5.5l3.5 2"/></svg>'}
+function fmSend(text){text=text.trim();if(!text||!fmCurrent)return;const c=fmChats.find(x=>x.id===fmCurrent);c.messages.push({text,mine:true,time:fmTime()});fmSave();fmRenderMessages();fmRenderList();document.getElementById('fmInput').value='';if(c.id==='fondbot')setTimeout(()=>{c.messages.push({text:['Got it! ✨ This is a demo reply from FondBot.','I’m here 🤖 Your messages are saved in this browser.','Nice! Keep chatting — the messenger is working.'][Math.floor(Math.random()*3)],mine:false,time:fmTime()});fmSave();if(fmCurrent===c.id)fmRenderMessages();fmRenderList()},650)}
+function fmPrompt(title,placeholder,callback,initial=''){const card=document.getElementById('fmStoryCard');card.innerHTML=`<h2>${fmEsc(title)}</h2><input id="fmPromptValue" maxlength="180" placeholder="${fmEsc(placeholder)}" value="${fmEsc(initial)}"><div class="story-actions"><button class="filter" id="fmCancel">Cancel</button><button class="filter" id="fmConfirm">Save</button></div>`;document.getElementById('fmStoryOverlay').classList.add('open');document.getElementById('fmCancel').onclick=()=>document.getElementById('fmStoryOverlay').classList.remove('open');document.getElementById('fmConfirm').onclick=()=>{const v=document.getElementById('fmPromptValue').value.trim();if(v){callback(v);document.getElementById('fmStoryOverlay').classList.remove('open')}}}
+function fmNewChat(){fmPrompt('Добавить человека','Имя или @username',name=>{const c={id:'c'+Date.now(),name:name.replace(/^@/,'') ,emoji:'👤',avatar:'',status:'Контакт · локальный макет',isContact:true,messages:[{text:'Контакт добавлен. Для переписки с реальным человеком онлайн FondMessages понадобится сервер и аккаунты пользователей.',mine:false,time:fmTime()}]};fmChats.unshift(c);fmSave();fmRenderList();fmOpen(c.id)})}
+function fmAddStory(){fmPrompt('Add a story','What would you like to share?',text=>{fmStories.unshift({id:'s'+Date.now(),name:'Your story',text,emoji:'✨',time:Date.now(),isMine:true});fmSave();fmRenderStories()})}
+function fmRenderStories(){const sec=document.querySelector('.stories');if(!sec)return;sec.innerHTML=`<div class="story" id="fmYourStory"><div class="add">＋</div>Your story</div>`+fmStories.map(s=>`<div class="story" data-fm-story="${fmEsc(s.id)}">${s.avatar?`<img src="${fmEsc(s.avatar)}" alt="">`:`<div class="add">${fmEsc(s.emoji||'✨')}</div>`}<span>${fmEsc(s.name)}</span></div>`).join('');document.getElementById('fmYourStory').onclick=fmAddStory;sec.querySelectorAll('[data-fm-story]').forEach(el=>el.onclick=()=>fmViewStory(el.dataset.fmStory))}
+function fmViewStory(id){const s=fmStories.find(x=>x.id===id);if(!s)return;const card=document.getElementById('fmStoryCard');card.innerHTML=`<div class="section-head"><h2>${fmEsc(s.name)}</h2><button class="circle" id="fmStoryClose">×</button></div><div class="story-art">${fmEsc(s.emoji||'✨')}</div><p>${fmEsc(s.text)}</p><div class="story-actions"><button class="filter" id="fmStoryDelete">Delete story</button></div>`;document.getElementById('fmStoryOverlay').classList.add('open');document.getElementById('fmStoryClose').onclick=()=>document.getElementById('fmStoryOverlay').classList.remove('open');document.getElementById('fmStoryDelete').onclick=()=>{fmStories=fmStories.filter(x=>x.id!==id);fmSave();fmRenderStories();document.getElementById('fmStoryOverlay').classList.remove('open')}}
+function fmOptions(){const c=fmChats.find(x=>x.id===fmCurrent);if(!c)return;const card=document.getElementById('fmStoryCard');card.innerHTML=`<h2>${fmEsc(c.name)}</h2><p>Chat options</p><button class="filter" style="width:100%;margin:5px 0" id="fmRename">Rename chat</button><button class="filter" style="width:100%;margin:5px 0" id="fmExport">Download chat history</button><button class="filter" style="width:100%;margin:5px 0" id="fmDelete">Delete chat</button><div class="story-actions"><button class="filter" id="fmOptionsClose">Close</button></div>`;document.getElementById('fmStoryOverlay').classList.add('open');document.getElementById('fmOptionsClose').onclick=()=>document.getElementById('fmStoryOverlay').classList.remove('open');document.getElementById('fmRename').onclick=()=>{document.getElementById('fmStoryOverlay').classList.remove('open');fmPrompt('Rename chat','New chat name',name=>{c.name=name;fmSave();fmRenderList();fmOpen(c.id)},c.name)};document.getElementById('fmExport').onclick=()=>{const blob=new Blob([c.messages.map(m=>`[${m.time}] ${m.mine?'You':c.name}: ${m.text}`).join('\n')],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='FondMessages-history.txt';a.click();URL.revokeObjectURL(a.href)};document.getElementById('fmDelete').onclick=()=>{if(c.id==='fondbot'){alert('FondBot cannot be deleted.');return}if(confirm('Delete this chat and its messages?')){fmChats=fmChats.filter(x=>x.id!==c.id);fmSave();fmRenderList();document.getElementById('fmStoryOverlay').classList.remove('open');document.getElementById('fmChatOverlay').classList.remove('open')}}}
+function searchChats(){fmEnsureUI();fmPrompt('Search chats','Type a name or message',q=>{const c=fmChats.find(x=>(x.name+' '+x.messages.map(m=>m.text).join(' ')).toLowerCase().includes(q.toLowerCase()));if(c)fmOpen(c.id);else alert('No chats found')})}
+function showTab(btn,name){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(name==='Chats')return;if(name==='Friends'){fmNewChat();return}if(name==='Calls'){alert('Звонки пока не подключены. Для настоящих звонков нужен сервер.');return}if(name==='Profile'){fmEnsureUI();const card=document.getElementById('fmStoryCard');card.innerHTML=`<h2>Твой профиль</h2><p><strong>${fmEsc(localStorage.getItem('fondmess.displayName')||'Пользователь')}</strong><br><span style="color:#8290a8">@${fmEsc(localStorage.getItem('fondmess.username')||'username')}</span></p><button class="filter" style="width:100%;margin:5px 0" id="fmEditProfile">Изменить имя</button><button class="filter" style="width:100%;margin:5px 0" id="fmSignOut">Выйти из профиля</button><div class="story-actions"><button class="filter" id="fmProfileClose">Закрыть</button></div>`;document.getElementById('fmStoryOverlay').classList.add('open');document.getElementById('fmProfileClose').onclick=()=>document.getElementById('fmStoryOverlay').classList.remove('open');document.getElementById('fmEditProfile').onclick=()=>{document.getElementById('fmStoryOverlay').classList.remove('open');fmPrompt('Твоё имя','Имя',v=>localStorage.setItem('fondmess.displayName',v),localStorage.getItem('fondmess.displayName')||'')};document.getElementById('fmSignOut').onclick=()=>{localStorage.removeItem('fondmess.registered.v1');location.reload()}}}
+
+/* iMessage-inspired registration screen */
+const FM_AUTH_KEY='fondmess.registered.v1';
+function fmShowRegistration(){if(localStorage.getItem(FM_AUTH_KEY)==='yes')return;const gate=document.createElement('div');gate.id='fmRegistrationGate';gate.innerHTML=`<div class="fm-register-card"><div class="fm-register-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7C18.2 7 7 17.2 7 30c0 6.7 3.1 12.6 8.1 16.6L13 57l12.2-5.4c2.2.7 4.5 1 6.8 1 13.8 0 25-10.2 25-22.6S45.8 7 32 7Z" fill="currentColor"/><path d="M20 23h24M20 31h18M20 39h12" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="fm-register-eyebrow">FONDMESSAGES</div><h1>Сообщения — ближе.</h1><p class="fm-register-copy">Создай профиль, чтобы начать общение с FondBot и добавлять людей в контакты.</p><form id="fmRegisterForm"><label for="fmRegName">Имя</label><input id="fmRegName" autocomplete="name" maxlength="40" placeholder="Как тебя зовут?" required><label for="fmRegHandle">Имя пользователя</label><div class="fm-handle-wrap"><span>@</span><input id="fmRegHandle" autocomplete="username" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" placeholder="username" required></div><button type="submit" class="fm-register-submit">Продолжить <span>›</span></button></form><p class="fm-register-note">Демо-профиль сохраняется только в этом браузере. Для настоящих аккаунтов и переписки между устройствами понадобится сервер.</p></div>`;document.body.appendChild(gate);gate.querySelector('#fmRegName').value=localStorage.getItem('fondmess.displayName')||'';gate.querySelector('#fmRegHandle').value=localStorage.getItem('fondmess.username')||'';gate.querySelector('#fmRegisterForm').onsubmit=e=>{e.preventDefault();const name=gate.querySelector('#fmRegName').value.trim(),handle=gate.querySelector('#fmRegHandle').value.trim().replace(/^@/,'');if(!name||!/^[A-Za-z0-9_]{3,24}$/.test(handle)){alert('Имя пользователя: 3–24 символа, только латинские буквы, цифры и _.');return}localStorage.setItem('fondmess.displayName',name);localStorage.setItem('fondmess.username',handle);localStorage.setItem(FM_AUTH_KEY,'yes');gate.classList.add('fm-register-exit');setTimeout(()=>gate.remove(),300)}}
+
+document.addEventListener('DOMContentLoaded',()=>{fmMakeParticles();fmLoad();fmEnsureUI();fmRenderList();fmRenderStories();fmShowRegistration();document.querySelectorAll('.chat').forEach(el=>el.onclick=()=>{const c=fmChats.find(x=>x.name===el.querySelector('.name')?.textContent);if(c)fmOpen(c.id)});const search=document.querySelector('.circle[aria-label="Search"]');if(search)search.onclick=searchChats;document.querySelectorAll('.filter').forEach(b=>{if(b.textContent.includes('Add'))b.onclick=fmAddStory});document.querySelectorAll('.nav button').forEach(b=>{const m=b.getAttribute('onclick')?.match(/showTab\(this,'([^']+)'/);if(m)b.onclick=()=>showTab(b,m[1])})});
 
-let currentUser = null;
-let activeChat = null;
-let messageChannel = null;
-let postsChannel = null;
-let chats = [];
-let knownMessages = new Set();
-
-/* 2. Утилиты */
-const $ = id => document.getElementById(id);
-
-function toast(message) {
-  const el = $("toast");
-  el.textContent = message;
-  el.classList.add("show");
-  clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => el.classList.remove("show"), 2800);
-}
-
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, ch => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  })[ch]);
-}
-
-function avatarURL(seed) {
-  return "https://api.dicebear.com/9.x/initials/svg?seed=" +
-    encodeURIComponent(seed || "FM");
-}
-
-function formatTime(value) {
-  if (!value) return "";
-  return new Date(value).toLocaleTimeString([], {
-    hour:"2-digit", minute:"2-digit"
-  });
-}
-
-/* 3. Размытые пятна — только CSS transforms */
-(function createParticles() {
-  const root = $("particles");
-  if (!root) return;
-
-  const count = window.matchMedia("(max-width:600px)").matches ? 4 : 6;
-  const fragment = document.createDocumentFragment();
-
-  for (let i = 0; i < count; i++) {
-    const spot = document.createElement("i");
-    const size = 90 + Math.random() * 100;
-    spot.style.width = size + "px";
-    spot.style.height = (size * (.65 + Math.random() * .5)) + "px";
-    spot.style.left = (Math.random() * 85) + "vw";
-    spot.style.top = (Math.random() * 90) + "vh";
-    spot.style.setProperty("--dur", (18 + Math.random() * 12) + "s");
-    spot.style.setProperty("--op", (.18 + Math.random() * .2).toFixed(2));
-    spot.style.animationDelay = (-Math.random() * 25) + "s";
-    fragment.appendChild(spot);
-  }
-  root.appendChild(fragment);
-})();
-
-/* 4. Переключение экранов */
-function openScreen(id) {
-  document.querySelectorAll(".screen").forEach(screen =>
-    screen.classList.remove("open")
-  );
-  $(id).classList.add("open");
-}
-
-function closeScreens() {
-  document.querySelectorAll(".screen").forEach(screen =>
-    screen.classList.remove("open")
-  );
-}
-
-$("backButton").addEventListener("click", () => {
-  closeScreens();
-  stopMessageUpdates();
-});
-
-document.querySelectorAll("[data-close]").forEach(button => {
-  button.addEventListener("click", () => {
-    $(button.dataset.close).classList.remove("open");
-  });
-});
-
-document.querySelectorAll("[data-tab]").forEach(button => {
-  button.addEventListener("click", async () => {
-    document.querySelectorAll("[data-tab]").forEach(b =>
-      b.classList.toggle("active", b === button)
-    );
-
-    const tab = button.dataset.tab;
-    if (tab === "profile") {
-      openScreen("profileScreen");
-    } else if (tab === "friends") {
-      openScreen("friendsScreen");
-      await loadFriends();
-    } else if (tab === "calls") {
-      openScreen("callsScreen");
-    }
-  });
-});
-
-/* 5. Авторизация */
-$("authForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const email = $("authEmail").value.trim();
-  const password = $("authPassword").value;
-  $("loginButton").disabled = true;
-
-  try {
-    const result = await db.auth.signInWithPassword({email, password});
-
-    if (result.error) {
-      const signup = await db.auth.signUp({email, password});
-
-      if (signup.error) throw signup.error;
-
-      if (!signup.data.session) {
-        toast("Проверь почту и подтверди регистрацию.");
-      } else {
-        toast("Регистрация успешна.");
-      }
-    } else {
-      toast("Вход выполнен.");
-    }
-  } catch (error) {
-    toast(error.message || "Не удалось войти.");
-  } finally {
-    $("loginButton").disabled = false;
-  }
-});
-
-$("logoutButton").addEventListener("click", async () => {
-  const {error} = await db.auth.signOut();
-  if (error) return toast(error.message);
-  toast("Ты вышел из аккаунта.");
-});
-
-db.auth.onAuthStateChange((_event, session) => {
-  currentUser = session?.user || null;
-  updateProfile();
-  if (currentUser) {
-    loadChats();
-    loadPosts();
-  } else {
-    chats = [];
-    $("chats").innerHTML =
-      '<div class="empty">Войди в аккаунт, чтобы пользоваться чатами.</div>';
-  }
-});
-
-function updateProfile() {
-  $("profileName").textContent =
-    currentUser?.user_metadata?.username ||
-    currentUser?.email?.split("@")[0] || "Гость";
-  $("profileEmail").textContent =
-    currentUser?.email || "Войдите, чтобы продолжить";
-  $("profileAvatar").src = avatarURL($("profileName").textContent);
-}
-
-/* 6. Чаты — список профилей */
-async function loadChats() {
-  if (!currentUser) return;
-
-  const {data, error} = await db
-    .from("profiles")
-    .select("*")
-    .neq("id", currentUser.id)
-    .limit(50);
-
-  if (error) {
-    $("chats").innerHTML =
-      '<div class="empty">Не удалось загрузить пользователей. Проверь таблицу profiles и RLS.</div>';
-    return;
-  }
-
-  chats = data || [];
-  renderChats();
-}
-
-function renderChats() {
-  const root = $("chats");
-
-  if (!currentUser) {
-    root.innerHTML = '<div class="empty">Войди в аккаунт.</div>';
-    return;
-  }
-
-  if (!chats.length) {
-    root.innerHTML = '<div class="empty">Пока нет других пользователей.</div>';
-    return;
-  }
-
-  root.replaceChildren();
-
-  const fragment = document.createDocumentFragment();
-
-  chats.forEach(person => {
-    const name = person.username || person.display_name ||
-      person.email || "Пользователь";
-    const row = document.createElement("div");
-    row.className = "chat";
-    row.innerHTML = `
-      <img class="avatar" alt="" src="${avatarURL(name)}">
-      <div class="details">
-        <div class="name">${escapeHTML(name)}</div>
-        <div class="preview">Открыть переписку</div>
-      </div>
-      <div class="meta">›</div>
-    `;
-    row.addEventListener("click", () => openChat(person));
-    fragment.appendChild(row);
-  });
-
-  root.appendChild(fragment);
-}
-
-/* 7. Открытие чата */
-async function openChat(person) {
-  if (!currentUser) return toast("Сначала войди в аккаунт.");
-
-  activeChat = person;
-  knownMessages.clear();
-
-  const name = person.username || person.display_name ||
-    person.email || "Пользователь";
-
-  $("chatName").textContent = name;
-  $("chatAvatar").src = avatarURL(name);
-  $("chatStatus").textContent = "FondMessages";
-  $("messagesList").replaceChildren();
-
-  openScreen("chatScreen");
-
-  await loadMessages();
-  subscribeMessages();
-}
-
-function stopMessageUpdates() {
-  if (messageChannel) {
-    db.removeChannel(messageChannel);
-    messageChannel = null;
-  }
-}
-
-async function loadMessages() {
-  if (!activeChat || !currentUser) return;
-
-  const {data, error} = await db
-    .from("messages")
-    .select("*")
-    .order("created_at", {ascending:true})
-    .limit(200);
-
-  if (error) {
-    $("messagesList").innerHTML =
-      '<div class="empty">Не удалось загрузить сообщения. Проверь схему messages.</div>';
-    return;
-  }
-
-  $("messagesList").replaceChildren();
-
-  (data || [])
-    .filter(message =>
-      (message.sender_id === currentUser.id &&
-       message.receiver_id === activeChat.id) ||
-      (message.sender_id === activeChat.id &&
-       message.receiver_id === currentUser.id)
-    )
-    .forEach(renderMessage);
-
-  scrollMessagesToBottom();
-}
-
-function renderMessage(message) {
-  if (!message || knownMessages.has(message.id)) return;
-  knownMessages.add(message.id);
-
-  const mine = message.sender_id === currentUser?.id;
-  const bubble = document.createElement("div");
-  bubble.className = "bubble " + (mine ? "mine" : "theirs");
-
-  const body = document.createElement("div");
-  body.textContent = message.content || message.text || "";
-  bubble.appendChild(body);
-
-  const time = document.createElement("div");
-  time.className = "bubble-time";
-  time.textContent = formatTime(message.created_at);
-  bubble.appendChild(time);
-
-  $("messagesList").appendChild(bubble);
-}
-
-function scrollMessagesToBottom() {
-  const el = $("messagesList");
-  el.scrollTop = el.scrollHeight;
-}
-
-function subscribeMessages() {
-  stopMessageUpdates();
-  if (!activeChat || !currentUser) return;
-
-  messageChannel = db.channel("messages-" + currentUser.id);
-
-  messageChannel
-    .on("postgres_changes", {
-      event:"INSERT", schema:"public", table:"messages"
-    }, payload => {
-      const message = payload.new;
-      const belongsToChat =
-        (message.sender_id === currentUser.id &&
-         message.receiver_id === activeChat?.id) ||
-        (message.sender_id === activeChat?.id &&
-         message.receiver_id === currentUser.id);
-
-      if (belongsToChat) {
-        renderMessage(message);
-        scrollMessagesToBottom();
-      }
-    })
-    .subscribe();
-}
-
-/* 8. Отправка сообщений */
-$("messageForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if (!currentUser || !activeChat) {
-    return toast("Сначала открой чат.");
-  }
-
-  const input = $("messageText");
-  const content = input.value.trim();
-  if (!content) return;
-
-  const sendButton = $("messageForm").querySelector("button");
-  sendButton.disabled = true;
-
-  const {error} = await db.from("messages").insert({
-    sender_id: currentUser.id,
-    receiver_id: activeChat.id,
-    content
-  });
-
-  sendButton.disabled = false;
-
-  if (error) {
-    toast("Не удалось отправить: " + error.message);
-    return;
-  }
-
-  input.value = "";
-  await loadMessages();
-});
-
-/* 9. Публикации */
-$("viewToggle").addEventListener("click", () => {
-  const showingPosts = !$("postsSection").hidden;
-  $("postsSection").hidden = showingPosts;
-  $("chats").hidden = !showingPosts;
-  $("stories").hidden = !showingPosts;
-  $("mainHeading").textContent = showingPosts ? "Stories" : "Posts";
-  $("listHeading").textContent = showingPosts ? "Messages" : "Posts";
-  if (!showingPosts) loadPosts();
-});
-
-async function loadPosts() {
-  if (!currentUser) {
-    $("postsList").innerHTML =
-      '<div class="empty">Войди, чтобы увидеть публикации.</div>';
-    return;
-  }
-
-  const {data, error} = await db
-    .from("posts")
-    .select("*")
-    .order("created_at", {ascending:false})
-    .limit(50);
-
-  if (error) {
-    $("postsList").innerHTML =
-      '<div class="empty">Публикации недоступны. Проверь таблицу posts и RLS.</div>';
-    return;
-  }
-
-  $("postsList").replaceChildren();
-
-  (data || []).forEach(post => {
-    const card = document.createElement("article");
-    card.className = "post";
-    card.innerHTML = `
-      <div class="post-top">
-        <img class="avatar" alt="" src="${avatarURL(post.user_id)}">
-        <div class="details">
-          <div class="name">${escapeHTML(post.username || "Пользователь")}</div>
-          <div class="preview">FondMessages</div>
-        </div>
-      </div>
-      <div class="post-body">${escapeHTML(post.content)}</div>
-      <div class="post-date">${escapeHTML(formatTime(post.created_at))}</div>
-    `;
-    $("postsList").appendChild(card);
-  });
-}
-
-$("postForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  if (!currentUser) return toast("Сначала войди в аккаунт.");
-
-  const input = $("postText");
-  const content = input.value.trim();
-  if (!content) return;
-
-  const {error} = await db.from("posts").insert({
-    user_id:currentUser.id,
-    content
-  });
-
-  if (error) {
-    toast("Не удалось опубликовать: " + error.message);
-    return;
-  }
-
-  input.value = "";
-  toast("Опубликовано.");
-  await loadPosts();
-});
-
-/* 10. Друзья */
-async function loadFriends() {
-  if (!currentUser) {
-    $("friendsList").innerHTML =
-      '<div class="empty">Войди в аккаунт, чтобы увидеть пользователей.</div>';
-    return;
-  }
-
-  const {data, error} = await db
-    .from("profiles")
-    .select("*")
-    .neq("id", currentUser.id)
-    .limit(50);
-
-  if (error) {
-    $("friendsList").innerHTML =
-      '<div class="empty">Не удалось загрузить пользователей.</div>';
-    return;
-  }
-
-  $("friendsList").replaceChildren();
-
-  (data || []).forEach(person => {
-    const name = person.username || person.display_name ||
-      person.email || "Пользователь";
-
-    const row = document.createElement("div");
-    row.className = "chat";
-    row.innerHTML = `
-      <img class="avatar" alt="" src="${avatarURL(name)}">
-      <div class="details"><div class="name">${escapeHTML(name)}</div>
-      <div class="preview">Открыть чат</div></div>
-    `;
-    row.addEventListener("click", () => openChat(person));
-    $("friendsList").appendChild(row);
-  });
-}
-
-/* 11. Stories — пока локальные */
-$("addStory").addEventListener("click", () => {
-  if (!currentUser) return toast("Войди, чтобы добавить историю.");
-
-  const text = prompt("Напиши текст истории:");
-  if (!text || !text.trim()) return;
-
-  const story = document.createElement("div");
-  story.className = "story";
-
-  const tile = document.createElement("div");
-  tile.className = "add";
-  tile.textContent = "✦";
-  tile.style.fontSize = "20px";
-
-  const caption = document.createElement("div");
-  caption.textContent = text.trim().slice(0, 35);
-
-  story.append(tile, caption);
-  $("stories").appendChild(story);
-});
-
-/* 12. Настройки и запуск */
-$("settingsButton").addEventListener("click", () => {
-  toast("Настройки пока не подключены.");
-});
-
-$("refreshButton").addEventListener("click", () => {
-  loadChats();
-  loadPosts();
-});
-
-async function init() {
-  updateProfile();
-
-  const {data, error} = await db.auth.getSession();
-  if (error) {
-    toast("Ошибка подключения Supabase.");
-    return;
-  }
-
-  currentUser = data.session?.user || null;
-  updateProfile();
-
-  if (currentUser) {
-    await loadChats();
-    await loadPosts();
-  } else {
-    $("chats").innerHTML =
-      '<div class="empty">Войди через вкладку «Профиль», чтобы начать.</div>';
-    $("postsList").innerHTML =
-      '<div class="empty">Войди, чтобы просматривать публикации.</div>';
-  }
-}
-
-init();
 </script>
+
+<script>
+// Quick tap = tiny tactile press. A short hold = gentle iOS-like expansion.
+(function(){
+  const selector='.chat,.story,.circle,.filter,.nav button,.chat-compose button,.story-modal-card button';
+  let active=null, timer=null;
+  function clear(){
+    if(timer){clearTimeout(timer);timer=null}
+    if(active){active.classList.remove('fm-pressed','fm-hold');active=null}
+  }
+  document.addEventListener('pointerdown',function(e){
+    const el=e.target.closest(selector); if(!el)return;
+    clear(); active=el; el.classList.add('fm-pressed');
+    timer=setTimeout(()=>{
+      if(active){active.classList.remove('fm-pressed');active.classList.add('fm-hold')}
+    },135);
+  },{passive:true});
+  document.addEventListener('pointerup',clear,{passive:true});
+  document.addEventListener('pointercancel',clear,{passive:true});
+  document.addEventListener('pointerout',function(e){if(active && e.target===active)clear()},{passive:true});
+  document.addEventListener('click',function(e){
+    const el=e.target.closest(selector);
+    if(el){el.classList.remove('fm-pressed','fm-hold')}
+  },{passive:true});
+  window.addEventListener('blur',clear);
+})();
+</script>
+
+
+<style>
+#fmRegistrationGate{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(242,246,253,.96);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);animation:content-enter .35s ease both}\n.fm-register-card{width:min(420px,100%);padding:30px 25px 24px;border:1px solid #fff;border-radius:30px;background:linear-gradient(160deg,#fff,#f4f7ff);box-shadow:0 25px 80px rgba(32,53,91,.17);text-align:left}\n.fm-register-mark{width:66px;height:66px;display:grid;place-items:center;border-radius:22px;background:#101114;color:#fff;box-shadow:0 9px 25px #10111424;margin-bottom:24px}.fm-register-mark svg{width:43px;height:43px}\n.fm-register-eyebrow{font-size:11px;letter-spacing:2.3px;font-weight:900;color:#7b8aa4}.fm-register-card h1{font-size:31px;line-height:1.06;letter-spacing:-1.2px;margin:10px 0 12px;color:#101827}.fm-register-copy{font-size:15px;line-height:1.5;color:#78869d;margin:0 0 25px}\n.fm-register-card label{display:block;font-size:12px;font-weight:800;color:#6d7b92;margin:14px 0 7px}.fm-register-card input{width:100%;box-sizing:border-box;border:1px solid #dfe6f1;border-radius:14px;padding:14px 13px;background:#fff;font:inherit;color:#15213a;outline:none}.fm-register-card input:focus{border-color:#7fa4fa;box-shadow:0 0 0 4px #2878f514}\n.fm-handle-wrap{display:flex;align-items:center;border:1px solid #dfe6f1;border-radius:14px;background:#fff;padding-left:13px;color:#8a97ac;font-weight:800}.fm-handle-wrap input{border:0;box-shadow:none!important}.fm-register-submit{width:100%;display:flex;justify-content:space-between;align-items:center;padding:15px 17px;margin-top:22px;border-radius:15px;background:#111318;color:white;font-weight:800;box-shadow:0 9px 20px #11131820}.fm-register-submit span{font-size:24px;line-height:16px}.fm-register-note{font-size:11px;line-height:1.5;color:#9aa5b6;margin:16px 2px 0}.fm-register-exit{opacity:0;transition:opacity .28s ease;pointer-events:none}
+</style>
 </body>
+
+<script>
+// FondMessages Supabase integration. Publishable key is intended for browser use; protect data with RLS.
+const FM_SUPABASE_URL='https://ddfxsdgytkpzzhsuvvbt.supabase.co';
+const FM_SUPABASE_KEY='sb_publishable_G-t30ZePWWdhlAxdFcOdnw_CZYC7Tfd';
+const fmDb=window.supabase.createClient(FM_SUPABASE_URL,FM_SUPABASE_KEY);
+let fmUser=null, fmProfile=null, fmRealtime=null;
+function fmNotice(msg){alert(msg)}
+async function fmInitCloud(){
+  const {data,error}=await fmDb.auth.getSession(); if(error){fmNotice('Ошибка подключения к Supabase: '+error.message);return}
+  fmUser=data.session?.user||null;
+  if(fmUser){await fmLoadCloudProfile();await fmLoadCloudContacts();fmSubscribeMessages();fmRenderList();fmRenderStories();}
+  fmShowRegistration();
+}
+async function fmLoadCloudProfile(){
+ const {data,error}=await fmDb.from('profiles').select('*').eq('id',fmUser.id).maybeSingle();
+ if(error){fmNotice('Не удалось загрузить профиль: '+error.message);return}
+ fmProfile=data;
+ if(fmProfile){localStorage.setItem('fondmess.displayName',fmProfile.display_name);localStorage.setItem('fondmess.username',fmProfile.username)}
+}
+async function fmLoadCloudContacts(){
+ if(!fmUser)return;
+ const {data,error}=await fmDb.from('messages').select('sender_id,receiver_id,content,created_at').or(`sender_id.eq.${fmUser.id},receiver_id.eq.${fmUser.id}`).order('created_at');
+ if(error){console.warn(error.message);return}
+ const ids=[...new Set((data||[]).flatMap(m=>[m.sender_id,m.receiver_id]).filter(id=>id!==fmUser.id))];
+ if(!ids.length)return;
+ const {data:profiles}=await fmDb.from('profiles').select('id,username,display_name').in('id',ids);
+ (profiles||[]).forEach(p=>{let c=fmChats.find(x=>x.id===p.id);if(!c){c={id:p.id,name:p.display_name,username:p.username,emoji:'👤',avatar:'',status:'@'+p.username,isContact:true,messages:[]};fmChats.unshift(c)};c.name=p.display_name;c.username=p.username;c.messages=(data||[]).filter(m=>m.sender_id===p.id||m.receiver_id===p.id).map(m=>({text:m.content,mine:m.sender_id===fmUser.id,time:new Date(m.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}));});fmSave();
+}
+function fmSubscribeMessages(){if(fmRealtime)fmDb.removeChannel(fmRealtime);fmRealtime=fmDb.channel('fm-messages-'+fmUser.id).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},async payload=>{const m=payload.new;if(m.sender_id!==fmUser.id&&m.receiver_id!==fmUser.id)return;await fmLoadCloudContacts();if(fmCurrent===m.sender_id||fmCurrent===m.receiver_id)fmRenderMessages();fmRenderList()}).subscribe()}
+function fmShowRegistration(){
+ if(fmUser){document.getElementById('fmRegistrationGate')?.remove();return}
+ document.getElementById('fmRegistrationGate')?.remove();const gate=document.createElement('div');gate.id='fmRegistrationGate';
+ gate.innerHTML=`<div class="fm-register-card"><div class="fm-register-mark">💬</div><div class="fm-register-eyebrow">FONDMESSAGES · ONLINE</div><h1>Сообщения — ближе.</h1><p class="fm-register-copy">Создай аккаунт или войди, чтобы переписываться онлайн.</p><form id="fmRegisterForm"><label for="fmRegName">Имя</label><input id="fmRegName" autocomplete="name" maxlength="40" placeholder="Как тебя зовут?" required><label for="fmRegHandle">Имя пользователя</label><div class="fm-handle-wrap"><span>@</span><input id="fmRegHandle" autocomplete="username" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" placeholder="username" required></div><label for="fmRegEmail">Электронная почта</label><input id="fmRegEmail" type="email" autocomplete="email" placeholder="you@example.com" required><label for="fmRegPassword">Пароль</label><input id="fmRegPassword" type="password" autocomplete="current-password" minlength="6" placeholder="Минимум 6 символов" required><button type="submit" class="fm-register-submit">Создать аккаунт <span>›</span></button><button type="button" id="fmLoginBtn" class="filter" style="width:100%;margin-top:10px">У меня уже есть аккаунт — войти</button></form><p class="fm-register-note">Аккаунт и сообщения хранятся в Supabase. При регистрации может потребоваться подтверждение почты.</p></div>`;
+ document.body.appendChild(gate);let login=false;const submit=gate.querySelector('.fm-register-submit');gate.querySelector('#fmLoginBtn').onclick=()=>{login=!login;gate.querySelector('#fmRegName').required=!login;gate.querySelector('#fmRegHandle').required=!login;gate.querySelector('#fmRegName').parentElement.querySelector('label').style.display=login?'none':'';gate.querySelector('#fmRegName').style.display=login?'none':'';gate.querySelector('#fmRegHandle').parentElement.previousElementSibling.style.display=login?'none':'';gate.querySelector('.fm-handle-wrap').style.display=login?'none':'';submit.innerHTML=login?'Войти <span>›</span>':'Создать аккаунт <span>›</span>';gate.querySelector('#fmLoginBtn').textContent=login?'Нет аккаунта — зарегистрироваться':'У меня уже есть аккаунт — войти'};
+ gate.querySelector('#fmRegisterForm').onsubmit=async e=>{e.preventDefault();const name=gate.querySelector('#fmRegName').value.trim(),handle=gate.querySelector('#fmRegHandle').value.trim().replace(/^@/, '').toLowerCase(),email=gate.querySelector('#fmRegEmail').value.trim(),password=gate.querySelector('#fmRegPassword').value;if(!login&&(!name||!/^[a-zA-Z0-9_]{3,24}$/.test(handle))){fmNotice('Username должен содержать 3–24 латинских символа, цифры или _.');return}submit.disabled=true;submit.textContent='Подключаем…';
+ try{let result;if(login)result=await fmDb.auth.signInWithPassword({email,password});else result=await fmDb.auth.signUp({email,password});if(result.error)throw result.error;fmUser=result.data.user;if(!fmUser)throw new Error('Не удалось создать пользователя.');if(!login){if(!result.data.session){fmNotice('Аккаунт создан! Подтверди почту по письму, затем вернись и войди.');submit.disabled=false;submit.innerHTML='Создать аккаунт <span>›</span>';return}const {error}=await fmDb.from('profiles').insert({id:fmUser.id,username:handle,display_name:name});if(error)throw error;}else{await fmLoadCloudProfile();if(!fmProfile){fmNotice('Для аккаунта нет профиля. Попробуй зарегистрироваться заново с другим email.');return}}await fmLoadCloudProfile();localStorage.setItem(FM_AUTH_KEY,'yes');gate.remove();await fmLoadCloudContacts();fmSubscribeMessages();fmRenderList();}catch(err){fmNotice('Не получилось: '+(err.message||err)+'\nЕсли username занят, выбери другой.');submit.disabled=false;submit.innerHTML=login?'Войти <span>›</span>':'Создать аккаунт <span>›</span>'}}
+}
+async function fmNewChat(){if(!fmUser){fmNotice('Сначала войди в аккаунт.');return}fmPrompt('Найти друга','@username',async value=>{const username=value.trim().replace(/^@/,'').toLowerCase();if(username===fmProfile?.username){fmNotice('Это твой собственный username.');return}const {data,error}=await fmDb.from('profiles').select('id,username,display_name').eq('username',username).maybeSingle();if(error){fmNotice('Ошибка поиска: '+error.message);return}if(!data){fmNotice('Пользователь не найден. Попроси друга сначала зарегистрироваться.');return}let c=fmChats.find(x=>x.id===data.id);if(!c){c={id:data.id,name:data.display_name,username:data.username,emoji:'👤',avatar:'',status:'@'+data.username,isContact:true,messages:[]};fmChats.unshift(c)}fmSave();fmRenderList();fmOpen(c.id)})}
+async function fmSend(text){text=text.trim();if(!text||!fmCurrent)return;const c=fmChats.find(x=>x.id===fmCurrent);if(!c)return;if(c.id==='fondbot'){c.messages.push({text,mine:true,time:fmTime()});fmSave();fmRenderMessages();fmRenderList();document.getElementById('fmInput').value='';setTimeout(()=>{c.messages.push({text:'FondBot — демо-помощник 🤖',mine:false,time:fmTime()});fmSave();if(fmCurrent===c.id)fmRenderMessages();fmRenderList()},500);return}if(!fmUser){fmNotice('Войди в аккаунт, чтобы отправлять сообщения.');return}const {error}=await fmDb.from('messages').insert({sender_id:fmUser.id,receiver_id:c.id,content:text});if(error){fmNotice('Не удалось отправить: '+error.message);return}c.messages.push({text,mine:true,time:fmTime()});fmSave();fmRenderMessages();fmRenderList();document.getElementById('fmInput').value=''}
+// Sign out now also ends the Supabase session.
+const fmOriginalShowTab=showTab;
+showTab=function(btn,name){if(name==='Profile'&&fmUser){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');fmEnsureUI();const card=document.getElementById('fmStoryCard');card.innerHTML=`<h2>Твой профиль</h2><p><strong>${fmEsc(fmProfile?.display_name||'Пользователь')}</strong><br><span style="color:#8290a8">@${fmEsc(fmProfile?.username||'username')}</span></p><p style="color:#8290a8">${fmEsc(fmUser.email||'')}</p><button class="filter" style="width:100%;margin:5px 0" id="fmSignOutCloud">Выйти из аккаунта</button><div class="story-actions"><button class="filter" id="fmProfileClose">Закрыть</button></div>`;document.getElementById('fmStoryOverlay').classList.add('open');document.getElementById('fmProfileClose').onclick=()=>document.getElementById('fmStoryOverlay').classList.remove('open');document.getElementById('fmSignOutCloud').onclick=async()=>{await fmDb.auth.signOut();location.reload()};return}return fmOriginalShowTab(btn,name)};
+window.addEventListener('DOMContentLoaded',()=>{fmInitCloud()});
+</script>
+
 </html>
+<style>
+/* Chat toolbar alignment refinement */
+.chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 17px;min-height:78px}
+.chat-head>.circle{display:flex;align-items:center;justify-content:center;padding:0;line-height:0;align-self:center;flex:0 0 44px}
+.chat-head>.avatar{display:block;align-self:center;flex:0 0 44px;margin:0}
+.chat-head>.details{align-self:center;min-width:0;flex:1;margin:0;display:flex;flex-direction:column;justify-content:center}
+.chat-head .name{line-height:1.2;margin:0 0 5px}
+.chat-head .preview{line-height:1.2;margin:0}
+.chat-head svg{display:block;margin:auto}
+
+/* v8: scrolling responsiveness and low-cost ambient blobs */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{overscroll-behavior-y:contain;touch-action:pan-y;}
+.app{transform:none!important;will-change:auto!important;}
+.fm-particles{position:fixed!important;inset:0!important;z-index:0!important;pointer-events:none!important;contain:strict!important;}
+.fm-particles i{filter:blur(22px)!important;will-change:transform;backface-visibility:hidden;animation-duration:var(--dur,24s)!important;animation-timing-function:ease-in-out!important;}
+/* Keep only the intended scroll areas scrollable and native on touch screens */
+.stories,.chat-messages,#fmStoryOverlay,.chat-overlay{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;}
+.stories{scroll-behavior:smooth;}
+.chat-messages{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.fm-particles i{animation:none!important}}
+</style>
+
+<style>
+/* v9 performance pass: native touch scrolling, lighter compositing */
+html, body, .stories, .chat-messages { scroll-behavior:auto!important; }
+body { -webkit-overflow-scrolling:touch; }
+.stories, .chat-messages, #fmStoryOverlay, .chat-overlay { -webkit-overflow-scrolling:touch!important; }
+/* Avoid expensive smooth-scroll animation and reduce repeated backdrop blur */
+.chat, .filter, #fmPostsPanel .post-composer, #fmPostsPanel .post-card { backdrop-filter:blur(8px)!important; -webkit-backdrop-filter:blur(8px)!important; }
+.nav { backdrop-filter:blur(14px) saturate(120%)!important; -webkit-backdrop-filter:blur(14px) saturate(120%)!important; }
+.fm-particles { transform:translateZ(0); }
+.fm-particles i { filter:blur(18px)!important; will-change:transform; animation-timing-function:linear!important; }
+@media (prefers-reduced-motion:reduce) { .fm-particles i { animation:none!important; } }
+</style>
+
+<style>
+
+/* v10: prioritize native, responsive scrolling on mobile */
+html, body { scroll-behavior:auto!important; }
+body { -webkit-overflow-scrolling:touch; }
+/* Avoid per-item transform/opacity animations competing with scroll frames */
+#chats .chat, .stories, .stories *, .section-head, .top { animation:none!important; transition-property:color,background-color,border-color,box-shadow!important; }
+/* Keep ambient blobs on their own inexpensive layer behind all content */
+.fm-particles { z-index:0!important; pointer-events:none!important; transform:translate3d(0,0,0); }
+.fm-particles i { filter:blur(14px)!important; will-change:transform; backface-visibility:hidden; animation-timing-function:linear!important; }
+.app, .top, .section-head, .stories, #chats, .nav { position:relative; }
+.app { z-index:1; }
+.nav { z-index:30!important; }
+.chat-overlay, #fmStoryOverlay { z-index:40!important; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+
+
+/* v11: restore a polished entrance while keeping scrolling lightweight */
+.fm-particles{z-index:0!important;contain:strict!important;pointer-events:none!important}
+.fm-particles i{filter:blur(19px)!important;will-change:transform!important;backface-visibility:hidden;animation-name:fm-drift-v11!important;animation-timing-function:ease-in-out!important;animation-duration:var(--dur,24s)!important;opacity:var(--op,.36)!important}
+@keyframes fm-drift-v11{0%{transform:translate3d(-2vw,2vh,0)}50%{transform:translate3d(2vw,-3vh,0)}100%{transform:translate3d(-1vw,3vh,0)}}
+/* Avoid costly blur/filter work on scrolling content; keep the glass look subtle */
+.chat,.nav,#fmPostsPanel .post-composer,#fmPostsPanel .post-card{backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}
+.chat{will-change:auto!important;transition:background-color .18s ease,border-color .18s ease!important}
+.chat:hover{transform:none!important}
+.story,.story img,.story .add{transition:transform .2s ease!important}
+/* Entrance motion: gentle stagger, transform/opacity only */
+.app{animation:fm-page-in .72s cubic-bezier(.22,.75,.25,1) both!important}
+.top{animation:fm-content-in .62s .04s cubic-bezier(.22,.75,.25,1) both!important}
+.stories{animation:fm-content-in .62s .10s cubic-bezier(.22,.75,.25,1) both!important}
+.section-head{animation:fm-content-in .62s .14s cubic-bezier(.22,.75,.25,1) both!important}
+#chats .chat{animation:fm-content-in .48s cubic-bezier(.22,.75,.25,1) both!important}
+#chats .chat:nth-child(1){animation-delay:.07s!important}
+#chats .chat:nth-child(2){animation-delay:.12s!important}
+#chats .chat:nth-child(3){animation-delay:.17s!important}
+#chats .chat:nth-child(4){animation-delay:.22s!important}
+#chats .chat:nth-child(5){animation-delay:.27s!important}
+.nav{animation:fm-nav-in .65s .18s cubic-bezier(.22,.75,.25,1) both!important}
+@keyframes fm-page-in{from{opacity:.7;transform:translate3d(0,8px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes fm-content-in{from{opacity:0;transform:translate3d(0,9px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes fm-nav-in{from{opacity:0;transform:translate3d(-50%,12px,0) scale(.985)}to{opacity:1;transform:translate3d(-50%,0,0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.app,.top,.stories,.section-head,#chats .chat,.nav{animation:none!important}.fm-particles i{animation:none!important}}
+</style>
